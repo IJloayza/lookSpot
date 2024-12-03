@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
+
+    <LinearLayout
+        android:id="@+id/menuContainer"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:background="#CFF7D3"
+        android:minHeight="40dp">
+
+        <LinearLayout
+            android:id="@+id/helpNav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="#00000000"
+                android:clickable="false"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_help"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Help"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsNav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="@drawable/menu_item_bg"
+                android:clickable="false"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_settings"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Settings"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/homeNav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="#00000000"
+                android:clickable="false"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_home"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Home"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/homeNav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="#00000000"
+                android:clickable="false"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_favorite"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Favorites"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
