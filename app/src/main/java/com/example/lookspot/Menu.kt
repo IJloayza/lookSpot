@@ -29,7 +29,7 @@ class Menu : Fragment() {
         helpNav.setOnClickListener { v: View? ->
             startActivity(
                 Intent(
-                    activity,
+                    context,
                     MainActivity::class.java
                 )
             )

@@ -16,9 +16,6 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
-        <activity
             android:name=".PromptActivity"
             android:exported="false" />
         <activity
