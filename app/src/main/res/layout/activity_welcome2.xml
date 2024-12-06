@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Welcome">
-    <!-- Falta el espacio negro en la base del primer linearLayout, background color, y prueba de toggles -->
+    tools:context=".Welcome2">
     <LinearLayout
         android:id="@+id/infoApp"
         android:layout_width="match_parent"
@@ -19,44 +18,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/titol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/titleApp"
-                android:textSize="64sp"
-                android:layout_margin="16dp"
-                android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/descQuerys"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/queryDesc"
-                android:layout_margin="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:id="@+id/descInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="\nDescribe that song you’re looking for!"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"/>
-            <TextView
-                android:id="@+id/input"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:padding="12dp"
-                android:background="@drawable/border_radius"
-                android:text="Tell me the name of that song that is so based omg, its so good its from that man you know?. He's from that country where all the artist come from."/>
     </LinearLayout>
     <TextView
         android:id="@+id/desc"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Say whatever you want to describe your song (or album) !!!"
+        android:text="Wait a few seconds while we think about it ..."
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/infoApp"
         app:layout_constraintStart_toStartOf="parent"
