@@ -5,4 +5,6 @@
     <string name="skip">Skip</string>
     <string name="titleApp">look\n Spot</string>
     <string name="queryDesc">You have <font color="#0FD56B">2</font> search queries left out of 5 on this minute.\n\nTime left to refill: <b>3m 21s</b></string>
+    <string name="godzilla_song">Godzilla</string>
+    <string name="eminem_artist">Eminem</string>
 </resources>

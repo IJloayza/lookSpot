@@ -26,6 +26,6 @@
                 android:text="@string/skip"
                 android:textColor="#000000"
                 android:textStyle="bold"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 </FrameLayout>

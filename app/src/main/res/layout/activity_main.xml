@@ -8,14 +8,5 @@
     tools:context=".MainActivity">
 
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/menuuu"
-        android:name="com.example.lookspot.Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout="@layout/fragment_menu"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
