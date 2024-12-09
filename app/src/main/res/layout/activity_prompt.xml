@@ -6,115 +6,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PromptActivity">
+    <TextView
+        android:id="@+id/titol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleApp"
+        android:textSize="90sp"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/descQuerys"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/queryDesc"
+        android:layout_margin="40dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/titol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/descInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\nDescribe that song you’re looking for!"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/input"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <!--Se debe implementar una dependencia para usar un endIcon para crear un boton de envío personalizado-->
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="12dp"
+        android:background="@drawable/border_radius"
+        app:layout_constraintBottom_toTopOf="@+id/fragMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Tell me the name of that song that is so based omg, its so good its from that man you know?. He's from that country where all the artist come from."/>
+    <fragment
+        android:id="@+id/fragMenu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#3A3A3A"
-        android:padding="16dp">
-
-        <!-- Barra de iconos superior -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:background="#C8E6C9"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_help"
-                android:contentDescription="Info" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_settings"
-                android:contentDescription="Settings" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_home"
-                android:contentDescription="Home" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_favorite"
-                android:contentDescription="Favorite" />
-        </LinearLayout>
-
-        <!-- Contenido principal -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="look"
-                android:textSize="36sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Spot"
-                android:textSize="48sp"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-
-        <!-- Información y entrada de texto -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="You have 2 search queries left out of 5 on this minute."
-                android:textColor="#B0BEC5"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time left to refill: 21s"
-                android:textColor="#B0BEC5"
-                android:textSize="14sp"
-                android:layout_marginBottom="16dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Describe that song you're looking for!"
-                android:background="@android:color/transparent"
-                android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp"
-                android:drawablePadding="8dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_menu"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
