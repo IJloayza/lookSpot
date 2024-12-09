@@ -7,17 +7,83 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-
-
-    <fragment
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/titol"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/menuuu"
-        android:name="com.example.lookspot.Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout="@layout/fragment_menu"/>
+        android:text="@string/titleApp"
+        android:textSize="90sp"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <EditText
+        android:id="@+id/emailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:background="@drawable/border_radius"
+        android:layout_margin="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/titol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_radius"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <EditText
+        android:id="@+id/textPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your phone number"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/border_radius"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <LinearLayout
+        android:id="@+id/containerButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/textPhone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        app:layout_constraintTop_toBottomOf="@+id/containerButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
