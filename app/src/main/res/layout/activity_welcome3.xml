@@ -25,6 +25,7 @@
         android:textAlignment="center"
         android:text="Choose any of the results to play it on your Spotify app !"
         android:textSize="20sp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@+id/containerSong"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

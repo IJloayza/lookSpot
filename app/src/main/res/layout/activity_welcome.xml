@@ -58,6 +58,7 @@
         android:textAlignment="center"
         android:text="Say whatever you want to describe your song (or album) !!!"
         android:textSize="20sp"
+        android:layout_margin="10dp"
         app:layout_constraintTop_toBottomOf="@+id/infoApp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
