@@ -1,6 +1,9 @@
 package com.example.lookspot
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,5 +28,21 @@ class MainActivity : AppCompatActivity() {
         Song.listSong.add(Song("I wonder", R.drawable.img_graduation, "Kanye West"))
         Song.listSong.add(Song("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
         Song.listSong.add(Song("Superhero", R.drawable.img_heroesvillains, "Future"))
+
+        val logins: ViewGroup = findViewById(R.id.containerButtons)
+
+        for (i in 0 until logins.childCount) {
+            val child = logins.getChildAt(i)
+            if (child is Button) {
+                child.setOnClickListener{ _ ->
+                    startActivity(
+                        Intent(this, Welcome::class.java)
+                    )
+                }
+            }
+        }
+
+
+
     }
 }

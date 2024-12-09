@@ -16,5 +16,8 @@ class Settings : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
+        menu.setPageElementAsActive(Menu.Page.SETTINGS)
     }
 }

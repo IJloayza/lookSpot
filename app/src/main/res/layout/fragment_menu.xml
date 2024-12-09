@@ -36,6 +36,7 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/helpIcon"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:background="#00000000"
@@ -65,9 +66,10 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/settingsIcon"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/menu_item_bg"
+                    android:background="#00000000"
                     android:clickable="false"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
@@ -93,6 +95,7 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/homeIcon"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:background="#00000000"
@@ -121,6 +124,7 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/favIcon"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:background="#00000000"

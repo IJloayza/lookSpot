@@ -129,8 +129,10 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragMenu"
+        android:name="com.example.lookspot.Menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_menu"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

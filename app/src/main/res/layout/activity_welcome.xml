@@ -106,6 +106,7 @@
             android:background="@drawable/toggle_selector" />
     </LinearLayout>
     <Button
+        android:id="@+id/nextWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -116,6 +117,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:name="com.example.lookspot.HelpSkip"
         android:layout_margin="16dp"
         tools:layout="@layout/fragment_help_skip"
         app:layout_constraintBottom_toBottomOf="parent"
