@@ -22,7 +22,7 @@
         android:layout_marginStart="16dp"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@color/md_button"
+        android:textColor="@color/spotiPrimary"
         app:layout_constraintStart_toEndOf="@+id/imageSong"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/eminem_artist"
-        android:textColor="@color/white"
+        android:textColor="@color/md_theme_tertiaryFixed"
         android:textSize="16sp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@+id/imageSong"
