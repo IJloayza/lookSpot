@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">lookSpot</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="settings">Settings</string>
+    <string name="tema">Tema:</string>
+    <string name="themeLight">Light</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Skip</string>
 </resources>
