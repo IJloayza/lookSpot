@@ -18,6 +18,10 @@ class Settings : AppCompatActivity() {
         }
 
         val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.setPageElementAsActive(Menu.Page.SETTINGS)
+        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
+            if (viewLifecycleOwner != null) {
+                menu.setPageElementAsActive(Menu.Page.SETTINGS)
+            }
+        }
     }
 }

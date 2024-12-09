@@ -72,8 +72,6 @@ class Menu : Fragment() {
 
     fun setPageElementAsActive(page: Page) {
 
-        if (view == null) return
-
         val btn: ImageButton = requireView().findViewById(page.imgId)
 
         btn.setBackgroundResource(R.drawable.border_radius)

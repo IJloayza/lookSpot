@@ -17,7 +17,21 @@ class PromptActivity : AppCompatActivity() {
             insets
         }
 
+        Song.listSong.add(Song("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
+        Song.listSong.add(Song("Predator", R.drawable.img_predator, "Ice Cube"))
+        Song.listSong.add(Song("My eyes", R.drawable.img_utopia, "Travis Scott"))
+        Song.listSong.add(Song("Annihilate", R.drawable.img_annihilate, "Metro Boomin"))
+        Song.listSong.add(Song("Zero", R.drawable.img_zero, "LYMK"))
+        Song.listSong.add(Song("I’ve been searching for you", R.drawable.img_centaur, "Jessie Mueller"))
+        Song.listSong.add(Song("I wonder", R.drawable.img_graduation, "Kanye West"))
+        Song.listSong.add(Song("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
+        Song.listSong.add(Song("Superhero", R.drawable.img_heroesvillains, "Future"))
+
         val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.setPageElementAsActive(Menu.Page.FAVORITES)
+        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
+            if (viewLifecycleOwner != null) {
+                menu.setPageElementAsActive(Menu.Page.HOME)
+            }
+        }
     }
 }

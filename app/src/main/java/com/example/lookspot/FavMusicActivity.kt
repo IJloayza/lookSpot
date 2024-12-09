@@ -25,7 +25,11 @@ class FavMusicActivity : AppCompatActivity() {
 
 
         val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.setPageElementAsActive(Menu.Page.FAVORITES)
+        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
+            if (viewLifecycleOwner != null) {
+                menu.setPageElementAsActive(Menu.Page.FAVORITES)
+            }
+        }
 
         recyclerView = findViewById(R.id.recyclerViewFavorites)
         recyclerView.layoutManager = LinearLayoutManager(this)

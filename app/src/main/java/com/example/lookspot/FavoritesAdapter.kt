@@ -1,5 +1,6 @@
 package com.example.lookspot
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -54,4 +55,19 @@ class FavoritesAdapter(
     override fun getItemCount(): Int {
         return favoriteSongs.size
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun removeSong(song: Song) {
+        favoriteSongs.remove(song)
+        // TODO: ARREGLAR ERROR DE INDICE
+        notifyDataSetChanged()
+        if (favoriteSongs.isEmpty()) {
+            onSongsEmpty()
+        }
+    }
+
+    private fun onSongsEmpty() {
+
+    }
+
 }
