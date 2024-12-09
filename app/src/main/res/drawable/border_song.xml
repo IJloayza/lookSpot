@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Borde redondeado -->
     <corners android:radius="10dp" />
-    <solid android:color="#535353" />
+    <solid android:color="@color/spotiBackground" />
 </shape>
