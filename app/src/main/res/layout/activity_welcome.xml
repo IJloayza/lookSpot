@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Next"
-        android:backgroundTint="@color/md_button"
+        android:backgroundTint="@color/spotiPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <fragment
