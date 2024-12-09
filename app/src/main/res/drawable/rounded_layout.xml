@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <corners android:radius="10dp" /> <!-- Bordes redondeados -->
+            <stroke
+                android:width="2dp"
+                android:color="#B0B0B0" /> <!-- Borde gris -->
+            <solid android:color="#FFFFFF" /> <!-- Fondo blanco (opcional) -->
+        </shape>
+    </item>
+</layer-list>

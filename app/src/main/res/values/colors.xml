@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="md_theme_primary">#336940</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
@@ -142,4 +143,6 @@
     <color name="md_theme_surfaceContainerHighest_highContrast">#DFE4DC</color>
     <color name="spotiPrimary">#0FD56B</color>
     <color name="spotiBackground">#B5070707</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>
