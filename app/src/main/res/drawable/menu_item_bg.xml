@@ -4,5 +4,4 @@
         android:width="30dp"/>
     <solid android:color="@android:color/white" />
     <corners android:radius="16dp" />
-    <elevation android:shadowColor="#20000000" android:elevation="4dp" />
 </shape>

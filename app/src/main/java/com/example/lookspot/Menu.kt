@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 
@@ -24,13 +25,43 @@ class Menu : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
 
-        val helpNav = view.findViewById<LinearLayout>(R.id.helpNav)
+        val helpNav: LinearLayout = view.findViewById(R.id.helpNav)
+        val settingsNav: LinearLayout = view.findViewById(R.id.settingsNav)
+        val homeNav: LinearLayout = view.findViewById(R.id.homeNav)
+        val favNav: LinearLayout = view.findViewById(R.id.favoriteNav)
 
         helpNav.setOnClickListener { v: View? ->
             startActivity(
                 Intent(
                     context,
-                    MainActivity::class.java
+                    Welcome::class.java
+                )
+            )
+        }
+
+        settingsNav.setOnClickListener { v: View? ->
+            startActivity(
+                Intent(
+                    context,
+                    Settings::class.java
+                )
+            )
+        }
+
+        homeNav.setOnClickListener{ v: View? ->
+            startActivity(
+                Intent(
+                    context,
+                    PromptActivity::class.java
+                )
+            )
+        }
+
+        favNav.setOnClickListener{ v: View? ->
+            startActivity(
+                Intent(
+                    context,
+                    FavMusicActivity::class.java
                 )
             )
         }
@@ -39,15 +70,22 @@ class Menu : Fragment() {
         return view
     }
 
-    fun setPageElementActive(page: Page?) {
+    fun setPageElementAsActive(page: Page) {
+
+        if (view == null) return
+
+        val btn: ImageButton = requireView().findViewById(page.imgId)
+
+        btn.setBackgroundResource(R.drawable.border_radius)
+
     }
 
 
-    enum class Page(val viewId: Int) {
-        HELP(0),
-        SETTINGS(0),
-        HOME(0),
-        FAVORITES(0)
+    enum class Page(val imgId: Int) {
+        HELP(R.id.helpIcon),
+        SETTINGS(R.id.settingsIcon),
+        HOME(R.id.homeIcon),
+        FAVORITES(R.id.favIcon)
     }
 
     companion object {

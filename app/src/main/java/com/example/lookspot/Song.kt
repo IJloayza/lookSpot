@@ -31,3 +31,26 @@ class Song(
             }
     }
 }
+
+// Clase para manejar favoritos
+object FavoritesManager {
+    private val favoriteSongs = Song.listSong
+
+    fun addSong(song: Song) {
+        if (!favoriteSongs.contains(song)) {
+            favoriteSongs.add(song)
+        }
+    }
+
+    fun removeSong(song: Song) {
+        favoriteSongs.remove(song)
+    }
+
+    fun isFavorite(song: Song): Boolean {
+        return favoriteSongs.contains(song)
+    }
+
+    fun getFavorites(): List<Song> {
+        return favoriteSongs
+    }
+}

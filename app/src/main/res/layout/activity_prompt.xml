@@ -49,9 +49,10 @@
         app:layout_constraintBottom_toTopOf="@+id/fragMenu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Tell me the name of that song that is so based omg, its so good its from that man you know?. He's from that country where all the artist come from."/>
-    <fragment
+        android:hint="@string/examplePrompt"/>
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragMenu"
+        android:name="com.example.lookspot.Menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_menu"
