@@ -9,5 +9,5 @@
     <string name="queryDesc">You have <font color="#0FD56B">2</font> search queries left out of 5 on this minute.\n\nTime left to refill: <b>3m 21s</b></string>
     <string name="godzilla_song">Godzilla</string>
     <string name="eminem_artist">Eminem</string>
-    <string name="examplePrompt">Tell me the name of that song that is so based omg, its so good its from that man you know?. He\'s from that country where all the artist come from.</string>
+    <string name="examplePrompt">Tell me the name of that song from the 80\'s,from that guitarrist who died really young from Seattle city.</string>
 </resources>
