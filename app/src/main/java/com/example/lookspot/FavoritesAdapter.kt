@@ -33,7 +33,8 @@ class FavoritesAdapter(
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
 
-        val bitOptions: Options = BitmapFactory.Options().apply {
+
+        val bitOptions: Options = Options().apply {
             inSampleSize = 4
         }
 
@@ -46,9 +47,22 @@ class FavoritesAdapter(
         holder.toggleHeart.isChecked = true
 
         holder.toggleHeart.setOnClickListener {
-            onRemoveSong(song)
-            favoriteSongs.removeAt(position)
-            notifyItemRemoved(position)
+            val currentPosition = holder.adapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                val songToRemove = favoriteSongs[currentPosition]
+
+                // Eliminar la canción de la lista
+                favoriteSongs.removeAt(currentPosition)
+
+                // Notificar la eliminación al adaptador
+                notifyItemRemoved(currentPosition)
+
+                // Opcional: notificar los elementos restantes
+                notifyItemRangeChanged(currentPosition, favoriteSongs.size)
+
+                // Callback para manejar lógica adicional
+                onRemoveSong(songToRemove)
+            }
         }
     }
 
@@ -56,18 +70,5 @@ class FavoritesAdapter(
         return favoriteSongs.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun removeSong(song: Song) {
-        favoriteSongs.remove(song)
-        // TODO: ARREGLAR ERROR DE INDICE
-        notifyDataSetChanged()
-        if (favoriteSongs.isEmpty()) {
-            onSongsEmpty()
-        }
-    }
-
-    private fun onSongsEmpty() {
-
-    }
 
 }
