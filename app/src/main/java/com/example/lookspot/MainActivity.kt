@@ -10,6 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        var didWelcome: Boolean = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,6 +24,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        if (!didWelcome) {
+            startActivity(
+                Intent(this, Welcome::class.java)
+            )
+        }
+
         Song.listSong.add(Song("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
         Song.listSong.add(Song("My eyes", R.drawable.img_utopia, "Travis Scott"))
         Song.listSong.add(Song("Predator", R.drawable.img_predator, "Ice Cube"))
@@ -37,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             if (child is Button) {
                 child.setOnClickListener{ _ ->
                     startActivity(
-                        Intent(this, Welcome::class.java)
+                        Intent(this, PromptActivity::class.java)
                     )
                 }
             }

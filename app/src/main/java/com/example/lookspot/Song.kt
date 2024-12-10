@@ -1,5 +1,7 @@
 package com.example.lookspot
 
+import java.util.Arrays
+
 class Song(
     title: String,
     imagePort: Int,
@@ -34,7 +36,7 @@ class Song(
 
 // Clase para manejar favoritos
 object FavoritesManager {
-    private val favoriteSongs = Song.listSong
+    private val favoriteSongs = ArrayList<Song>()
 
     fun addSong(song: Song) {
         if (!favoriteSongs.contains(song)) {
