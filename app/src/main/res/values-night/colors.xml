@@ -1,6 +1,7 @@
 <resources>
     <color name="menu_bg">#4E4E4E</color>
     <color name="fg_icon">#ffffff</color>
+    <color name="bg_icon">#65000000</color>
     <color name="md_theme_primary">#9AD4A2</color>
     <color name="md_theme_onPrimary">#003917</color>
     <color name="md_theme_primaryContainer">#19512A</color>
