@@ -76,7 +76,7 @@
         android:layout_margin="16dp"
         android:padding="12dp"
         android:background="@drawable/border_radius"
-        app:layout_constraintBottom_toTopOf="@+id/fragMenu"
+        app:layout_constraintBottom_toTopOf="@+id/nav_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/examplePrompt"/>
@@ -95,12 +95,12 @@
             app:layout_constraintEnd_toEndOf="@id/input"
             />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragMenu"
-        android:name="com.example.lookspot.Menu"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_menu"
+        app:menu="@menu/nav_bar"
+        android:background="@color/menu_bg"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
