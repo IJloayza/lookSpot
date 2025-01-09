@@ -43,7 +43,7 @@ class Menu : Fragment() {
             startActivity(
                 Intent(
                     context,
-                    Settings::class.java
+                    SettingsActivity::class.java
                 )
             )
         }

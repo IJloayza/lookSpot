@@ -29,14 +29,6 @@ class PromptActivity : AppCompatActivity() {
         }
 
 
-        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
-            if (viewLifecycleOwner != null) {
-                menu.setPageElementAsActive(Menu.Page.HOME)
-            }
-        }
-
-
         val prompt: EditText = findViewById(R.id.input)
         val submit: ImageButton = findViewById(R.id.submitBtn)
 

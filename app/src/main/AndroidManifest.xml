@@ -15,7 +15,7 @@
             android:name=".Loading"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".FavMusicActivity"
@@ -45,7 +45,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.LookSpot.Starting">
             <intent-filter>

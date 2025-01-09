@@ -9,7 +9,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Settings : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
 
     private lateinit var preferences: SharedPreferences
 
@@ -21,13 +21,6 @@ class Settings : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-
-        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
-            if (viewLifecycleOwner != null) {
-                menu.setPageElementAsActive(Menu.Page.SETTINGS)
-            }
         }
 
 
