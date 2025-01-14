@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity() {
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
         Menu.selectItemNavBar(navigationBar, this)
-        navigationBar.selectedItemId = R.id.settings
+        //navigationBar.selectedItemId = R.id.settings
 
         // Obtener las preferencias compartidas
         preferences = getSharedPreferences("AppSettings", MODE_PRIVATE)

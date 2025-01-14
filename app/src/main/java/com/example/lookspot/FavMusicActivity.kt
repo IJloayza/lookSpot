@@ -27,7 +27,7 @@ class FavMusicActivity : AppCompatActivity() {
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
         Menu.selectItemNavBar(navigationBar, this)
-        navigationBar.selectedItemId = R.id.favourite
+        //navigationBar.selectedItemId = R.id.favourite
 
         recyclerView = findViewById(R.id.recyclerViewFavorites)
         recyclerView.layoutManager = LinearLayoutManager(this)
