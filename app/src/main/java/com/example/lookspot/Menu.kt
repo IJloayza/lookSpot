@@ -1,7 +1,7 @@
 package com.example.lookspot
 
 import android.content.Intent
-import com.google.android.material.navigation.NavigationBarView
+
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView

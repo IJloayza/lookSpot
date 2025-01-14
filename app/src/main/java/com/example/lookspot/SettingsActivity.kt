@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
-class Settings : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
 
     private lateinit var preferences: SharedPreferences
 
