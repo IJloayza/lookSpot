@@ -123,16 +123,12 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-
-
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragMenu"
-        android:name="com.example.lookspot.Menu"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_menu"
+        app:menu="@menu/nav_bar"
+        android:background="@color/menu_bg"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

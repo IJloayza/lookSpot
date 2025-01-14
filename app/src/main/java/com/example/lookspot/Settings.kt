@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class Settings : AppCompatActivity() {
 
@@ -23,13 +25,9 @@ class Settings : AppCompatActivity() {
             insets
         }
 
-        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
-            if (viewLifecycleOwner != null) {
-                menu.setPageElementAsActive(Menu.Page.SETTINGS)
-            }
-        }
-
+        val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        Menu.selectItemNavBar(navigationBar, this)
+        navigationBar.selectedItemId = R.id.settings
 
         // Obtener las preferencias compartidas
         preferences = getSharedPreferences("AppSettings", MODE_PRIVATE)

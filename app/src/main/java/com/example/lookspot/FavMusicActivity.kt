@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class FavMusicActivity : AppCompatActivity() {
 
@@ -23,13 +25,9 @@ class FavMusicActivity : AppCompatActivity() {
             insets
         }
 
-
-        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
-            if (viewLifecycleOwner != null) {
-                menu.setPageElementAsActive(Menu.Page.FAVORITES)
-            }
-        }
+        val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        Menu.selectItemNavBar(navigationBar, this)
+        navigationBar.selectedItemId = R.id.favourite
 
         recyclerView = findViewById(R.id.recyclerViewFavorites)
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -19,10 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFavorites"
         android:layout_width="match_parent"
@@ -30,16 +26,15 @@
         app:flow_horizontalAlign="center"
         app:flow_verticalAlign="center"
         app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintBottom_toTopOf="@id/fragMenu"
+        app:layout_constraintBottom_toTopOf="@id/nav_bar"
         android:padding="16dp" />
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragMenu"
-        android:name="com.example.lookspot.Menu"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_menu"
+        app:menu="@menu/nav_bar"
+        android:background="@color/menu_bg"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

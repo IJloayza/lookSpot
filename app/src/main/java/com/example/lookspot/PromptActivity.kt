@@ -16,6 +16,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class PromptActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +30,9 @@ class PromptActivity : AppCompatActivity() {
             insets
         }
 
-
-        val menu = supportFragmentManager.findFragmentById(R.id.fragMenu) as Menu
-        menu.viewLifecycleOwnerLiveData.observe(this) { viewLifecycleOwner ->
-            if (viewLifecycleOwner != null) {
-                menu.setPageElementAsActive(Menu.Page.HOME)
-            }
-        }
+        val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        Menu.selectItemNavBar(navigationBar, this)
+        navigationBar.selectedItemId = R.id.home
 
 
         val prompt: EditText = findViewById(R.id.input)
