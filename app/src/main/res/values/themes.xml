@@ -54,4 +54,5 @@
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.LookSpot</item>
     </style>
+
 </resources>
