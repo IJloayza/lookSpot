@@ -9,12 +9,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class Menu{
     companion object{
         fun selectItemNavBar(navigationBar: BottomNavigationView, activity: AppCompatActivity) {
-            if (activity is PromptActivity) {
-                navigationBar.selectedItemId = R.id.home
-            }else if (activity is SettingsActivity){
-                navigationBar.selectedItemId = R.id.settings
-            }else if (activity is FavMusicActivity){
-                navigationBar.selectedItemId = R.id.favourite
+            when(activity) {
+                is PromptActivity -> navigationBar.selectedItemId = R.id.home
+                is SettingsActivity -> navigationBar.selectedItemId = R.id.settings
+                is FavMusicActivity -> navigationBar.selectedItemId = R.id.favourite;
             }
 
             navigationBar.setOnItemSelectedListener { item ->

@@ -27,7 +27,6 @@ class PromptActivity : AppCompatActivity() {
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
         Menu.selectItemNavBar(navigationBar, this)
-        //navigationBar.selectedItemId = R.id.home
 
 
         val prompt: EditText = findViewById(R.id.input)
