@@ -12,7 +12,7 @@ class Menu{
             when(activity) {
                 is PromptActivity -> navigationBar.selectedItemId = R.id.home
                 is SettingsActivity -> navigationBar.selectedItemId = R.id.settings
-                is FavMusicActivity -> navigationBar.selectedItemId = R.id.favourite;
+                is AlbumActivity -> navigationBar.selectedItemId = R.id.favourite;
             }
 
             navigationBar.setOnItemSelectedListener { item ->
