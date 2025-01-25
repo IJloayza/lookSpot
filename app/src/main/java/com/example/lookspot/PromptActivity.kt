@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.BitmapFactory.Options
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -14,26 +15,31 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 
 class PromptActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_prompt)
 
-        val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
-        Menu.selectItemNavBar(navigationBar, this)
+        val bottomNavBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        val drawerNavBar : NavigationView = findViewById(R.id.nav_view)
+
+        Menu.configureBottomNavBar(bottomNavBar, this)
+        Menu.configureDrawerNavBar(drawerNavBar, this)
 
 
         val prompt: EditText = findViewById(R.id.input)
         val submit: ImageButton = findViewById(R.id.submitBtn)
 
         submit.setOnClickListener{ _ ->
-
             val intent = Intent(this, Loading::class.java)
             intent.putExtra("prompt", prompt.text.toString())
             startActivity(intent)

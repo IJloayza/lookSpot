@@ -6,10 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -22,7 +19,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
-        Menu.selectItemNavBar(navigationBar, this)
+        Menu.configureBottomNavBar(navigationBar, this)
         //navigationBar.selectedItemId = R.id.settings
 
         // Obtener las preferencias compartidas

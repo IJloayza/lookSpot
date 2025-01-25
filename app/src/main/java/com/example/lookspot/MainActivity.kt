@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
         if (!didWelcome) {
             startActivity(
                 Intent(this, Welcome::class.java)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until logins.childCount) {
             val child = logins.getChildAt(i)
             if (child is Button) {
-                child.setOnClickListener{ _ ->
+                child.setOnClickListener{
                     startActivity(
                         Intent(this, PromptActivity::class.java)
                     )
