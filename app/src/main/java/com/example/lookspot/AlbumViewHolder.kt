@@ -20,6 +20,7 @@ class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         albumLayout.setOnClickListener {
             val i = Intent(itemView.context, AlbumSongsActivity::class.java)
             i.putParcelableArrayListExtra("songs", album.listSong)
+            i.putExtra("albumTitle", album.title)
             itemView.context.startActivity(i)
         }
         albumLayout.setOnLongClickListener {

@@ -31,9 +31,8 @@ class PromptActivity : AppCompatActivity() {
 
         val bottomNavBar = findViewById<BottomNavigationView>(R.id.nav_bar)
         val drawerNavBar : NavigationView = findViewById(R.id.nav_view)
-
-        Menu.configureBottomNavBar(bottomNavBar, this)
         Menu.configureDrawerNavBar(drawerNavBar, this)
+        Menu.configureBottomNavBar(bottomNavBar, this)
 
 
         val prompt: EditText = findViewById(R.id.input)

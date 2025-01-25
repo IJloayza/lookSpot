@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -19,8 +20,9 @@ class SettingsActivity : AppCompatActivity() {
 
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        val drawerNavBar : NavigationView = findViewById(R.id.nav_view)
         Menu.configureBottomNavBar(navigationBar, this)
-        //navigationBar.selectedItemId = R.id.settings
+        Menu.configureDrawerNavBar(drawerNavBar, this)
 
         // Obtener las preferencias compartidas
         preferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
