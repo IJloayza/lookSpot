@@ -17,20 +17,20 @@ class FavMusicActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_fav_music)
 
-
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
         Menu.configureBottomNavBar(navigationBar, this)
         //navigationBar.selectedItemId = R.id.favourite
 
-        recyclerView = findViewById(R.id.recyclerViewFavorites)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val songs = intent.getParcelableArrayListExtra<Song>("songs")
+        if (songs != null) {
+            recyclerView = findViewById(R.id.recyclerViewFavorites)
+            recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val favoriteSongs = FavoritesManager.getFavorites().toMutableList()
-        adapter = FavoritesAdapter(this, favoriteSongs) { song ->
-            FavoritesManager.removeSong(song)
+            adapter = FavoritesAdapter(this, songs) { song ->
+                SongManager.removeSong(song)
+            }
+
+            recyclerView.adapter = adapter
         }
-
-        recyclerView.adapter = adapter
-
     }
 }

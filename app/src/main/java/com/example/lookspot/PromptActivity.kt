@@ -66,7 +66,7 @@ class PromptActivity : AppCompatActivity() {
 
         resultContainer.addView(questionInflater)
 
-        for (song in Song.listSong.shuffled().take(4)) {
+        for (song in Album.listOfAlbum[0].listSong.shuffled().take(4)) {
             val songInflater = LayoutInflater.from(this)
                 .inflate(R.layout.item_song, resultContainer, false)
 
@@ -83,14 +83,14 @@ class PromptActivity : AppCompatActivity() {
             imageSong.setImageBitmap(bitmap)
             titleSong.text = song.title
             titleArtist.text = song.artist
-            toggleHeart.isChecked = FavoritesManager.isFavorite(song)
+            toggleHeart.isChecked = SongManager.isFavorite(song)
 
             toggleHeart.setOnClickListener { _ ->
 
-                if (FavoritesManager.isFavorite(song))
-                    FavoritesManager.removeSong(song)
+                if (SongManager.isFavorite(song))
+                    SongManager.removeSong(song)
                 else
-                    FavoritesManager.addSong(song)
+                    SongManager.addSong(song)
 
             }
 
