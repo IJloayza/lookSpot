@@ -20,5 +20,5 @@
         android:id="@+id/favourite"
         android:enabled="true"
         android:icon="@drawable/ic_favorite"
-        android:title="Favourite" />
+        android:title="Albums" />
 </menu>

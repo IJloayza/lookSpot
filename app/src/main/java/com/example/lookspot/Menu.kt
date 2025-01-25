@@ -35,7 +35,7 @@ class Menu{
                         true
                     }
                     R.id.favourite -> {
-                        val i = Intent(activity, FavMusicActivity::class.java)
+                        val i = Intent(activity, AlbumActivity::class.java)
                         activity.startActivity(i)
                         true
                     }
