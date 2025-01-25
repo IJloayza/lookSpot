@@ -13,17 +13,19 @@ class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val titleAlbum: TextView = itemView.findViewById(R.id.titleAlbum)
     val numberSong: TextView = itemView.findViewById(R.id.numberOfSongs)
 
-    fun render(album:Album){
+    fun render(album:Album, adapter: RecyclerView.Adapter<AlbumViewHolder>, holder: AlbumViewHolder){
         imageAlbumDefault.setImageResource(R.drawable.folder)
         titleAlbum.text = album.title
-        numberSong.text = album.numberOfSongs.toString()
+        numberSong.text = album.listSong.size.toString()
         albumLayout.setOnClickListener {
-            val i = Intent(itemView.context, FavMusicActivity::class.java)
+            val i = Intent(itemView.context, AlbumSongsActivity::class.java)
             i.putParcelableArrayListExtra("songs", album.listSong)
             itemView.context.startActivity(i)
         }
         albumLayout.setOnLongClickListener {
             AlbumManager.removeAlbum(album)
+            // borra de la pantalla el item
+            adapter.notifyItemRemoved(holder.adapterPosition)
             true
         }
     }

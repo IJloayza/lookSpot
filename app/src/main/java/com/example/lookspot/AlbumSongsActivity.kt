@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FavMusicActivity : AppCompatActivity() {
+class AlbumSongsActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: FavoritesAdapter
+    private lateinit var adapter: SongsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class FavMusicActivity : AppCompatActivity() {
             recyclerView = findViewById(R.id.recyclerViewFavorites)
             recyclerView.layoutManager = LinearLayoutManager(this)
 
-            adapter = FavoritesAdapter(this, songs) { song ->
+            adapter = SongsAdapter(this, songs) { song ->
                 SongManager.removeSong(song)
             }
 

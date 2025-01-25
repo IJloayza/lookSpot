@@ -39,7 +39,7 @@ class Welcome3 : AppCompatActivity() {
 
         val container: LinearLayout = findViewById(R.id.containerSong)
 
-        for (song in Album.listOfAlbum[0].listSong.shuffled().take(2)) {
+        for (song in SongManager.songs.shuffled().take(2)) {
             val songInflater = LayoutInflater.from(this)
                 .inflate(R.layout.item_song, container, false)
 

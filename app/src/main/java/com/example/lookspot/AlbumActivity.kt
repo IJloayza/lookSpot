@@ -17,7 +17,7 @@ class AlbumActivity : AppCompatActivity() {
         setContentView(R.layout.activity_album)
 
         val navigationBar = findViewById<BottomNavigationView>(R.id.nav_bar)
-        Menu.selectItemNavBar(navigationBar, this)
+        Menu.configureBottomNavBar(navigationBar, this)
 
         initRecyclerView()
     }
@@ -27,7 +27,7 @@ class AlbumActivity : AppCompatActivity() {
         val manager = LinearLayoutManager(this)
         val decoration = DividerItemDecoration(this, manager.orientation)
         recyclerView.layoutManager = manager
-        recyclerView.adapter = AlbumAdapter(Album.listOfAlbum)
+        recyclerView.adapter = AlbumAdapter(AlbumManager.getAlbums())
         recyclerView.addItemDecoration(decoration)
     }
 }

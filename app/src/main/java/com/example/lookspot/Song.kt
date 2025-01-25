@@ -54,3 +54,37 @@ class Song(
             field = value
         }
 }
+
+// Clase para manejar canciones
+object SongManager {
+    val songs = ArrayList<Song>().apply {
+        add(Song("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
+        add(Song("My eyes", R.drawable.img_utopia, "Travis Scott"))
+        add(Song("Predator", R.drawable.img_predator, "Ice Cube"))
+        add(Song("Annihilate", R.drawable.img_annihilate, "Metro Boomin"))
+        add(Song("Zero", R.drawable.img_zero, "LYMK"))
+        add(Song("I’ve been searching for you", R.drawable.img_centaur, "Jessie Mueller"))
+        add(Song("I wonder", R.drawable.img_graduation, "Kanye West"))
+        add(Song("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
+        add(Song("Superhero", R.drawable.img_heroesvillains, "Future"))
+    }
+
+    fun addSong(song: Song) {
+        if (!songs.contains(song)) {
+            songs.add(song)
+        }
+    }
+
+    fun removeSong(song: Song) {
+        songs.remove(song)
+    }
+
+    fun isFavorite(song: Song): Boolean {
+        return AlbumManager.getFavorites().listSong.contains(song)
+    }
+
+}
+
+
+
+

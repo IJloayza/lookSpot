@@ -24,7 +24,7 @@ class Menu{
             when(activity) {
                 is PromptActivity -> navBar.setCheckedItem(R.id.home)
                 is SettingsActivity -> navBar.setCheckedItem(R.id.settings)
-                is FavMusicActivity -> navBar.setCheckedItem(R.id.favs) ;
+                is AlbumSongsActivity -> navBar.setCheckedItem(R.id.favs) ;
             }
 
             val toggle = activity.findViewById<ImageView>(R.id.menu_btn)
@@ -39,7 +39,7 @@ class Menu{
 
                 when (item.itemId) {
                     R.id.home -> redirectTo(PromptActivity(), activity)
-                    R.id.favs -> redirectTo(FavMusicActivity(), activity)
+                    R.id.favs -> redirectTo(AlbumSongsActivity(), activity)
                     R.id.settings -> redirectTo(SettingsActivity(), activity)
                     R.id.help -> redirectTo(Welcome(), activity)
                     R.id.logout -> redirectTo(MainActivity(), activity)
@@ -53,7 +53,7 @@ class Menu{
             when(activity) {
                 is PromptActivity -> navigationBar.selectedItemId = R.id.home
                 is SettingsActivity -> navigationBar.selectedItemId = R.id.settings
-                is FavMusicActivity -> navigationBar.selectedItemId = R.id.favs;
+                is AlbumActivity -> navigationBar.selectedItemId = R.id.favs;
             }
 
             navigationBar.setOnItemSelectedListener { item ->
@@ -61,7 +61,7 @@ class Menu{
 
                 when (item.itemId) {
                     R.id.home -> redirectTo(PromptActivity(), activity)
-                    R.id.favs -> redirectTo(FavMusicActivity(), activity)
+                    R.id.favs -> redirectTo(AlbumActivity(), activity)
                     R.id.settings -> redirectTo(SettingsActivity(), activity)
                     R.id.help -> redirectTo(Welcome(), activity)
                     else -> return@setOnItemSelectedListener false

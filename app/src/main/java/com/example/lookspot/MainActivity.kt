@@ -33,18 +33,9 @@ class MainActivity : AppCompatActivity() {
                 Intent(this, Welcome::class.java)
             )
         }
-        val favourites:Album = Album("Favourites")
-        favourites.listSong.add(Song("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
-        favourites.listSong.add(Song("My eyes", R.drawable.img_utopia, "Travis Scott"))
-        favourites.listSong.add(Song("Predator", R.drawable.img_predator, "Ice Cube"))
-        favourites.listSong.add(Song("Annihilate", R.drawable.img_annihilate, "Metro Boomin"))
-        favourites.listSong.add(Song("Zero", R.drawable.img_zero, "LYMK"))
-        favourites.listSong.add(Song("I’ve been searching for you", R.drawable.img_centaur, "Jessie Mueller"))
-        favourites.listSong.add(Song("I wonder", R.drawable.img_graduation, "Kanye West"))
-        favourites.listSong.add(Song("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
-        favourites.listSong.add(Song("Superhero", R.drawable.img_heroesvillains, "Future"))
 
-        AlbumManager.addAlbum(favourites)
+
+
 
         val logins: ViewGroup = findViewById(R.id.containerButtons)
 

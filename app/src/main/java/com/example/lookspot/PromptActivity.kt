@@ -66,7 +66,7 @@ class PromptActivity : AppCompatActivity() {
 
         resultContainer.addView(questionInflater)
 
-        for (song in Album.listOfAlbum[0].listSong.shuffled().take(4)) {
+        for (song in SongManager.songs.shuffled().take(4)) {
             val songInflater = LayoutInflater.from(this)
                 .inflate(R.layout.item_song, resultContainer, false)
 
@@ -85,7 +85,7 @@ class PromptActivity : AppCompatActivity() {
             titleArtist.text = song.artist
             toggleHeart.isChecked = SongManager.isFavorite(song)
 
-            toggleHeart.setOnClickListener { _ ->
+            toggleHeart.setOnClickListener {
 
                 if (SongManager.isFavorite(song))
                     SongManager.removeSong(song)

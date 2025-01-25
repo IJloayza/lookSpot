@@ -11,39 +11,26 @@ class Album(
 
     var listSong: ArrayList<Song> = ArrayList()
         get() = field
+        set(value) {
+            field = value
+        }
 
-    var numberOfSongs = listSong.size
-        get() = field
-    companion object{
-        val listOfAlbum : ArrayList<Album> = ArrayList()
-            get() = field
-    }
-}
-// Clase para manejar canciones
-object SongManager {
-    private val favoriteSongs = ArrayList<Song>()
 
     fun addSong(song: Song) {
-        if (!favoriteSongs.contains(song)) {
-            favoriteSongs.add(song)
-        }
+        listSong.add(song)
     }
 
-    fun removeSong(song: Song) {
-        favoriteSongs.remove(song)
-    }
 
-    fun isFavorite(song: Song): Boolean {
-        return favoriteSongs.contains(song)
-    }
-
-    fun getFavorites(): List<Song> {
-        return favoriteSongs
-    }
 }
 
+
 object AlbumManager {
-    private val albums = ArrayList<Album>()
+    private val albums = ArrayList<Album>() .apply {
+        add(Album("Favourites").apply {
+            listSong = SongManager.songs.shuffled()
+                .take(4) as ArrayList<Song>
+        })
+    }
 
     fun addAlbum(album: Album) {
         if (!albums.contains(album)) {
@@ -59,7 +46,12 @@ object AlbumManager {
         return albums.contains(album)
     }
 
+    fun getFavorites(): Album {
+        return albums[0]
+    }
+
     fun getAlbums(): List<Album> {
         return albums
     }
+
 }
