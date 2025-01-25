@@ -17,8 +17,8 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/favourite"
+        android:id="@+id/albums"
         android:enabled="true"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/folder"
         android:title="Albums" />
 </menu>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/albumLayout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
     android:layout_margin="10dp"
@@ -17,15 +17,16 @@
 
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:id="@+id/imageAlbum"
             android:src="@drawable/folder"
             android:scaleType="fitCenter"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="140dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingVertical="10dp"
             android:layout_marginLeft="20dp">
 
             <TextView
@@ -41,9 +42,18 @@
                 android:id="@+id/numberOfSongs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Number of songs"
+                android:text="x"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/md_theme_tertiaryFixed"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=" Songs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/numberOfSongs"
                 android:textColor="@color/md_theme_tertiaryFixed"
                 />
 

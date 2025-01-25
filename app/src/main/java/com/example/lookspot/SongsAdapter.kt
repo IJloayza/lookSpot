@@ -1,6 +1,5 @@
 package com.example.lookspot
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,11 +12,11 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 
-class FavoritesAdapter(
+class SongsAdapter(
     private val context: Context,
-    private val favoriteSongs: MutableList<Song>,
+    private val songsList: MutableList<Song>,
     private val onRemoveSong: (Song) -> Unit
-) : RecyclerView.Adapter<FavoritesAdapter.SongViewHolder>() {
+) : RecyclerView.Adapter<SongsAdapter.SongViewHolder>() {
 
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageSong: ImageView = itemView.findViewById(R.id.imageSong)
@@ -38,7 +37,7 @@ class FavoritesAdapter(
             inSampleSize = 4
         }
 
-        val song = favoriteSongs[position]
+        val song = songsList[position]
 
         val bitmap: Bitmap = BitmapFactory.decodeResource(context.resources, song.imagePort, bitOptions)
         holder.imageSong.setImageBitmap(bitmap)
@@ -49,16 +48,16 @@ class FavoritesAdapter(
         holder.toggleHeart.setOnClickListener {
             val currentPosition = holder.adapterPosition
             if (currentPosition != RecyclerView.NO_POSITION) {
-                val songToRemove = favoriteSongs[currentPosition]
+                val songToRemove = songsList[currentPosition]
 
                 // Eliminar la canción de la lista
-                favoriteSongs.removeAt(currentPosition)
+                songsList.removeAt(currentPosition)
 
                 // Notificar la eliminación al adaptador
                 notifyItemRemoved(currentPosition)
 
                 // Opcional: notificar los elementos restantes
-                notifyItemRangeChanged(currentPosition, favoriteSongs.size)
+                notifyItemRangeChanged(currentPosition, songsList.size)
 
                 // Callback para manejar lógica adicional
                 onRemoveSong(songToRemove)
@@ -67,7 +66,7 @@ class FavoritesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return favoriteSongs.size
+        return songsList.size
     }
 
 
