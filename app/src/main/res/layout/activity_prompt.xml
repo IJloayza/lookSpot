@@ -85,6 +85,7 @@
             android:layout_margin="16dp"
             android:padding="12dp"
             android:gravity="top"
+            android:textColor="@color/black"
             android:background="@drawable/border_radius"
             app:layout_constraintBottom_toTopOf="@+id/nav_bar"
             app:layout_constraintStart_toStartOf="parent"

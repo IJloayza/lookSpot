@@ -55,7 +55,7 @@ class Menu{
                 is PromptActivity -> navigationBar.selectedItemId = R.id.home
                 is SettingsActivity -> navigationBar.selectedItemId = R.id.settings
                 is AlbumActivity -> navigationBar.selectedItemId = R.id.albums;
-                is AlbumSongsActivity -> navigationBar.selectedItemId = R.id.albums;
+                is AlbumSongsActivity -> "do nothing";
             }
 
             navigationBar.setOnItemSelectedListener { item ->
