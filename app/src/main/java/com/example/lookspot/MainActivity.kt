@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
         val logins: ViewGroup = findViewById(R.id.containerButtons)
 
         for (i in 0 until logins.childCount) {
