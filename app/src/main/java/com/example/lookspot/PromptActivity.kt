@@ -87,9 +87,10 @@ class PromptActivity : AppCompatActivity() {
             toggleHeart.setOnClickListener {
 
                 if (SongManager.isFavorite(song))
-                    SongManager.removeSong(song)
+                    AlbumManager.getFavorites().removeSong(song)
                 else
-                    SongManager.addSong(song)
+                    AlbumManager.getFavorites().addSong(song)
+
 
             }
 

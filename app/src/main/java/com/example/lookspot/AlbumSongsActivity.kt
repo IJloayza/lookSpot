@@ -1,6 +1,8 @@
 package com.example.lookspot
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,20 +26,31 @@ class AlbumSongsActivity : AppCompatActivity() {
         Menu.configureBottomNavBar(navigationBar, this)
         Menu.configureDrawerNavBar(drawerNavBar, this)
 
-        val songs = intent.getParcelableArrayListExtra<Song>("songs")
-        val albumTitle = intent.getStringExtra("albumTitle")
+
         val title = findViewById<TextView>(R.id.title)
-        title.text = albumTitle
+
+        val songs = intent.getParcelableArrayListExtra<Song>("songs")
+        val albumId = intent.getIntExtra("albumId", 0)
+
+        val album = AlbumManager.getAlbumById(albumId) ?: return
+
+        title.text = album.title
 
         if (songs != null) {
             recyclerView = findViewById(R.id.recyclerViewFavorites)
             recyclerView.layoutManager = LinearLayoutManager(this)
 
-            adapter = SongsAdapter(this, songs) { song ->
-                SongManager.removeSong(song)
+            adapter = SongsAdapter(this, album.listSong) { song ->
+                album.removeSong(song)
             }
 
             recyclerView.adapter = adapter
+        }
+
+        val returnBtn = findViewById<ImageButton>(R.id.backBtn)
+
+        returnBtn.setOnClickListener{
+            startActivity(Intent(this, AlbumActivity::class.java))
         }
     }
 }

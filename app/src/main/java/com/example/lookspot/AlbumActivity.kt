@@ -50,6 +50,7 @@ class AlbumActivity : AppCompatActivity() {
             val selectedAlbum = adapter.getItem(position)
 
             val intent = Intent(this, AlbumSongsActivity::class.java).apply {
+                putExtra("albumId", selectedAlbum.id)
                 putExtra("albumTitle", selectedAlbum.title)
                 putParcelableArrayListExtra("songs", selectedAlbum.listSong)
             }
