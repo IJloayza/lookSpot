@@ -38,7 +38,6 @@ class PromptActivity : AppCompatActivity() {
         Menu.configureDrawerNavBar(drawerNavBar, this)
         Menu.configureBottomNavBar(bottomNavBar, this)
         initPromptText()
-        initButtonSend()
 
         val promptRecover = intent.extras?.getString("recoveryPrompt")
         if (!promptRecover.isNullOrEmpty()) {
@@ -47,35 +46,26 @@ class PromptActivity : AppCompatActivity() {
 
         // Cargando resultados mas o menos
         initLayoutSongs()
+        initButtonSend()
         observeSongs()
     }
 
     private fun initLayoutSongs() {
-        val question = intent.extras?.getString("prompt")
-        if (question.isNullOrEmpty()) return
         resultContainer = findViewById(R.id.resultContainer)
-
-        val questionInflater = LayoutInflater.from(this)
-            .inflate(R.layout.prompt_question, resultContainer, false)
-
-        val textV: TextView = questionInflater.findViewById(R.id.textContent)
-        textV.text = question
-
-        resultContainer.addView(questionInflater)
     }
 
     private fun initButtonSend() {
         val submit: ImageButton = findViewById(R.id.submitBtn)
         submit.setOnClickListener{
             var promptText = prompt.text.toString()
-            if(promptText != null){
-                viewModel.listSongs(promptText)
-                val intent = Intent(this, Loading::class.java)
-                intent.putExtra("prompt", prompt.text.toString())
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "S'ha de enviar un prompt", Toast.LENGTH_SHORT).show()
-            }
+            val questionInflater = LayoutInflater.from(this)
+                .inflate(R.layout.prompt_question, resultContainer, false)
+
+            val textV: TextView = questionInflater.findViewById(R.id.textContent)
+            textV.text = promptText
+
+            resultContainer.addView(questionInflater)
+            viewModel.listSongs(promptText)
 
         }
     }
@@ -86,7 +76,7 @@ class PromptActivity : AppCompatActivity() {
 
     private fun observeSongs() {
         viewModel.songs.observe(this) { songs ->
-            if (songs != null && songs.isNotEmpty()) {
+            if (!songs.isNullOrEmpty()) {
                 // Limpiar el contenedor antes de agregar nuevas vistas
                 resultContainer.removeAllViews()
 
@@ -96,7 +86,7 @@ class PromptActivity : AppCompatActivity() {
                     val songName = songView.findViewById<TextView>(R.id.titleSong)
                     val artistName = songView.findViewById<TextView>(R.id.artistSong)
                     val songImage = songView.findViewById<ImageView>(R.id.imageSong)
-                    val buttonHeart: ToggleButton = songView.findViewById(R.id.toggle_heart)
+                    val buttonHeart: ImageButton = songView.findViewById(R.id.toggle_heart)
 
                     buttonHeart.setOnClickListener{
                         //Si clican el boton se abre un AlertDialog que decide a cual album se va la cancion

@@ -31,9 +31,7 @@ class AlbumViewHolder(
             itemView.context.startActivity(i)
         }
         albumLayout.setOnLongClickListener {
-            AlbumManager.removeAlbum(album)
-            // borra de la pantalla el item
-            adapter.notifyItemRemoved(holder.adapterPosition)
+            // para un futuro update
             true
         }
         deleteBtn.setOnClickListener {
@@ -41,6 +39,7 @@ class AlbumViewHolder(
             // borra de la pantalla el item
             adapter.notifyItemRemoved(holder.adapterPosition)
             onRemove(album)
+
         }
     }
 }

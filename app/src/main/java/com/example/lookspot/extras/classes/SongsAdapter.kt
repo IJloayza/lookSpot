@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory.Options
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ToggleButton
@@ -23,7 +24,7 @@ class SongsAdapter(
         val imageSong: ImageView = itemView.findViewById(R.id.imageSong)
         val titleSong: TextView = itemView.findViewById(R.id.titleSong)
         val titleArtist: TextView = itemView.findViewById(R.id.artistSong)
-        val toggleHeart: ToggleButton = itemView.findViewById(R.id.toggle_heart)
+        val toggleHeart: ImageButton = itemView.findViewById(R.id.toggle_heart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -39,7 +40,6 @@ class SongsAdapter(
             .into(holder.imageSong)
         holder.titleSong.text = song.nombre
         holder.titleArtist.text = song.artista
-        holder.toggleHeart.isChecked = true
 
         holder.toggleHeart.setOnClickListener {
             val currentPosition = holder.adapterPosition

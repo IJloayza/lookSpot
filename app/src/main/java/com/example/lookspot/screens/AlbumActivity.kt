@@ -27,7 +27,6 @@ import com.google.android.material.navigation.NavigationView
 class AlbumActivity : AppCompatActivity() {
 
     private val albumViewModel: AlbumViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,6 +123,8 @@ class AlbumActivity : AppCompatActivity() {
 
                     initRecyclerView()
                 }
+
+            builder.show()
 
 
 
