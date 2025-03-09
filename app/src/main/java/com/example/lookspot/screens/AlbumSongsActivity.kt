@@ -44,11 +44,8 @@ class AlbumSongsActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        var album = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("album", Album::class.java)
-        } else {
-            intent.getParcelableExtra("album") as? Album
-        }
+        val id = intent.getIntExtra("album",0)
+        val album = AlbumManager.getAlbumById(id)
 
         title.text = album?.nombre
 

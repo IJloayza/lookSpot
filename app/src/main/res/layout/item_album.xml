@@ -57,6 +57,16 @@
                 android:textColor="@color/md_theme_tertiaryFixed"
                 />
 
+            <ImageButton
+                android:id="@+id/deleteBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_bin"
+                android:background="#00000000"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

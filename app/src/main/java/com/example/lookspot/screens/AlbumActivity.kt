@@ -6,6 +6,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -16,11 +17,18 @@ import com.example.lookspot.R
 import com.example.lookspot.extras.classes.AlbumAdapter
 import com.example.lookspot.extras.classes.AlbumArrayAdapter
 import com.example.lookspot.extras.classes.AlbumManager
+import com.example.lookspot.extras.classes.UserManager
 import com.example.lookspot.extras.classes.Menu
+import com.example.lookspot.extras.models.AlbumViewModel
+import com.example.lookspot.extras.models.UserViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class AlbumActivity : AppCompatActivity() {
+
+    private val albumViewModel: AlbumViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,7 +51,9 @@ class AlbumActivity : AppCompatActivity() {
         val manager = LinearLayoutManager(this)
         val decoration = DividerItemDecoration(this, manager.orientation)
         recyclerView.layoutManager = manager
-        recyclerView.adapter = AlbumAdapter(AlbumManager.getAlbums())
+        recyclerView.adapter = AlbumAdapter(AlbumManager.getAlbums()) {
+            albumViewModel.deleteAlbum(it.id)
+        }
         recyclerView.addItemDecoration(decoration)
     }
 
@@ -60,7 +70,7 @@ class AlbumActivity : AppCompatActivity() {
 
             val intent = Intent(this, AlbumSongsActivity::class.java).apply {
                 //Envío to do el album
-                putExtra("album", selectedAlbum)
+                putExtra("album", selectedAlbum.id)
             }
 
             startActivity(intent)
@@ -98,7 +108,19 @@ class AlbumActivity : AppCompatActivity() {
                 .setPositiveButton("Add") { _, _ ->
                     val nameField = dialogView.findViewById<EditText>(R.id.nameField)
                     val name = nameField.text.toString()
+                    val id = UserManager.getUser().id
 
+                    albumViewModel.postAlbum(id, name)
+                    // Observe the album LiveData
+                    albumViewModel.album.observe(this) { newAlbum ->
+                        if (newAlbum != null) {
+                            println("New album created: ${newAlbum.nombre}")
+                            AlbumManager.addAlbum(newAlbum)
+                            initRecyclerView()
+                        } else {
+                            println("Error creating album")
+                        }
+                    }
 
                     initRecyclerView()
                 }
