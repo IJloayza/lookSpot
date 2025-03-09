@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.AlbumManager
+import com.example.lookspot.extras.classes.UserManager
 import com.example.lookspot.extras.models.Album
 import com.example.lookspot.extras.models.UserViewModel
 
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent(this, PromptActivity::class.java)
                 //Se pasa todos los albumes de user a AlbumManager
+                UserManager.setUser(user)
                 AlbumManager.setAlbums(user.albums as ArrayList<Album>)
                 startActivity(intent)
             } else {

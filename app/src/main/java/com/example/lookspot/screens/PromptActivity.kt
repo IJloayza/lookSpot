@@ -111,6 +111,7 @@ class PromptActivity : AppCompatActivity() {
 
                                 // Añadir al album
                                 selectedAlbum.canciones += song
+                                viewModel.postSong(selectedAlbum.id, song)
                                 // Mostrar un mensaje de confirmación
                                 Toast.makeText(this, "Cançó afegida a ${selectedAlbum.nombre}", Toast.LENGTH_SHORT).show()
                             }
