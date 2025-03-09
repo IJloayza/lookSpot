@@ -7,12 +7,10 @@ data class User(
     val id: Int,
     val nombre: String,
     val correo: String,
-    val contrasena: String,
     val albums: List<Album>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
-        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.createTypedArrayList(Album) ?: emptyList()
@@ -22,7 +20,6 @@ data class User(
         parcel.writeInt(id)
         parcel.writeString(nombre)
         parcel.writeString(correo)
-        parcel.writeString(contrasena)
         parcel.writeTypedList(albums)
     }
 

@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         initEditTexts()
         initButtonSign()
 
-        // Observar el User desde el ViewModel
         observeUser()
     }
 

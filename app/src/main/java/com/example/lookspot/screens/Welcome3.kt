@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lookspot.R
-import com.example.lookspot.extras.classes.SongManager
 import com.example.lookspot.extras.models.SongInflate
 
 class Welcome3 : AppCompatActivity() {
@@ -43,11 +42,6 @@ class Welcome3 : AppCompatActivity() {
             add(SongInflate("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
             add(SongInflate("My eyes", R.drawable.img_utopia, "Travis Scott"))
             add(SongInflate("Predator", R.drawable.img_predator, "Ice Cube"))
-            add(SongInflate("Annihilate", R.drawable.img_annihilate, "Metro Boomin"))
-            add(SongInflate("Zero", R.drawable.img_zero, "LYMK"))
-            add(SongInflate("I’ve been searching for you", R.drawable.img_centaur, "Jessie Mueller"))
-            add(SongInflate("I wonder", R.drawable.img_graduation, "Kanye West"))
-            add(SongInflate("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
             add(SongInflate("Superhero", R.drawable.img_heroesvillains, "Future"))
         }
         for (song in songs.shuffled().take(2)) {

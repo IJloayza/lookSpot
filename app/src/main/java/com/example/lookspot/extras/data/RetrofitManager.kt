@@ -1,5 +1,6 @@
 package com.example.lookspot.extras.data
 
+import com.example.lookspot.R
 import com.example.lookspot.extras.models.Album
 import com.example.lookspot.extras.models.AlbumCreate
 import com.example.lookspot.extras.models.Song
@@ -16,6 +17,12 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import java.io.InputStream
+import java.security.KeyStore
+import java.security.cert.CertificateFactory
+import javax.net.ssl.*
+import java.security.cert.X509Certificate
+import javax.net.ssl.SSLContext
 
 interface RetrofitService {
     //Pa futuro
@@ -26,7 +33,7 @@ interface RetrofitService {
     suspend fun listOfSongs(@Path("query") query:String):Response<List<Song>>
 
     @POST("/user/login")
-    suspend fun userLog(@Body user: UserLogin): Response<User>
+    suspend fun userLog(@Body email: UserLogin): Response<User>
 
     @POST("/album/")
     suspend fun postAlbum(@Body album: AlbumCreate): Response<Album>
@@ -49,6 +56,26 @@ interface RetrofitService {
 
 object RetrofitManager{
     private const val BASE_URL = "https://smcardona.tech"
+
+    val inputStream: InputStream = resources.openRawResource(R.raw.server)
+    val certificateFactory = CertificateFactory.getInstance("X.509")
+    val certificate = certificateFactory.generateCertificate(inputStream) as X509Certificate
+    inputStream.close()
+
+    // Crear un KeyStore y agregar el certificado
+    val keyStore = KeyStore.getInstance(KeyStore.getDefaultType())
+    keyStore.load(null, null)
+    keyStore.setCertificateEntry("server", certificate)
+
+    // Crear un TrustManager que confíe en el certificado
+    val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+    trustManagerFactory.init(keyStore)
+    val trustManagers = trustManagerFactory.trustManagers
+    val trustManager = trustManagers[0] as X509TrustManager
+
+    // Configurar el SSLContext con el TrustManager
+    val sslContext = SSLContext.getInstance("TLS")
+    sslContext.init(null, arrayOf(trustManager), null)
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
