@@ -57,26 +57,6 @@ interface RetrofitService {
 object RetrofitManager{
     private const val BASE_URL = "https://smcardona.tech"
 
-    val inputStream: InputStream = resources.openRawResource(R.raw.server)
-    val certificateFactory = CertificateFactory.getInstance("X.509")
-    val certificate = certificateFactory.generateCertificate(inputStream) as X509Certificate
-    inputStream.close()
-
-    // Crear un KeyStore y agregar el certificado
-    val keyStore = KeyStore.getInstance(KeyStore.getDefaultType())
-    keyStore.load(null, null)
-    keyStore.setCertificateEntry("server", certificate)
-
-    // Crear un TrustManager que confíe en el certificado
-    val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-    trustManagerFactory.init(keyStore)
-    val trustManagers = trustManagerFactory.trustManagers
-    val trustManager = trustManagers[0] as X509TrustManager
-
-    // Configurar el SSLContext con el TrustManager
-    val sslContext = SSLContext.getInstance("TLS")
-    sslContext.init(null, arrayOf(trustManager), null)
-
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
