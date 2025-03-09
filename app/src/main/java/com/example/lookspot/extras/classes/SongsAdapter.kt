@@ -32,12 +32,6 @@ class SongsAdapter(
     }
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
-
-
-        val bitOptions: Options = Options().apply {
-            inSampleSize = 4
-        }
-
         val song = songsList[position]
 
         Glide.with(context)
