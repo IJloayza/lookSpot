@@ -5,18 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.BitmapFactory.Options
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lookspot.R
-import com.example.lookspot.extras.models.SongInflate
 
 class Welcome3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,35 +30,5 @@ class Welcome3 : AppCompatActivity() {
                 Intent(this, Welcome4::class.java)
             )
         }
-
-        val container: LinearLayout = findViewById(R.id.containerSong)
-        val songs = ArrayList<SongInflate>().apply {
-            add(SongInflate("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
-            add(SongInflate("My eyes", R.drawable.img_utopia, "Travis Scott"))
-            add(SongInflate("Predator", R.drawable.img_predator, "Ice Cube"))
-            add(SongInflate("Superhero", R.drawable.img_heroesvillains, "Future"))
-        }
-        for (song in songs.shuffled().take(2)) {
-            val songInflater = LayoutInflater.from(this)
-                .inflate(R.layout.item_song, container, false)
-
-            val imageSong: ImageView = songInflater.findViewById(R.id.imageSong)
-            val titleSong: TextView = songInflater.findViewById(R.id.titleSong)
-            val titleArtist: TextView = songInflater.findViewById(R.id.artistSong)
-            val toggleHeart: ToggleButton = songInflater.findViewById(R.id.toggle_heart)
-
-            val bitOptions: Options = Options().apply {
-                inSampleSize = 4
-            }
-            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, song.image, bitOptions)
-
-            imageSong.setImageBitmap(bitmap)
-            titleSong.text = song.title
-            titleArtist.text = song.artist
-            toggleHeart.isChecked = false
-
-            container.addView(songInflater)
-        }
-
     }
 }
