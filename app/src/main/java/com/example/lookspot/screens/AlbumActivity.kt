@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.screens
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lookspot.extras.classes.AlbumAdapter
+import com.example.lookspot.extras.classes.AlbumArrayAdapter
+import com.example.lookspot.extras.classes.AlbumManager
+import com.example.lookspot.extras.classes.Menu
+import com.example.lookspot.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -50,9 +55,8 @@ class AlbumActivity : AppCompatActivity() {
             val selectedAlbum = adapter.getItem(position)
 
             val intent = Intent(this, AlbumSongsActivity::class.java).apply {
-                putExtra("albumId", selectedAlbum.id)
-                putExtra("albumTitle", selectedAlbum.title)
-                putParcelableArrayListExtra("songs", selectedAlbum.listSong)
+                //Envío to do el album
+                putExtra("album", selectedAlbum)
             }
 
             startActivity(intent)
@@ -73,5 +77,7 @@ class AlbumActivity : AppCompatActivity() {
         searcher.setOnCloseListener {
             false
         }
+
+
     }
 }

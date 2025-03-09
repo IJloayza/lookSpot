@@ -1,8 +1,10 @@
-package com.example.lookspot
+package com.example.lookspot.extras.classes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lookspot.R
+import com.example.lookspot.extras.models.Album
 
 class AlbumAdapter(val albumList:List<Album>) : RecyclerView.Adapter<AlbumViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {

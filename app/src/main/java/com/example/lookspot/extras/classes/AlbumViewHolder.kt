@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.extras.classes
 
 import android.content.Intent
 import android.view.View
@@ -6,6 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lookspot.R
+import com.example.lookspot.extras.models.Album
+import com.example.lookspot.screens.AlbumSongsActivity
 
 class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val albumLayout = itemView.findViewById<ConstraintLayout>(R.id.albumLayout)
@@ -13,15 +16,13 @@ class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val titleAlbum: TextView = itemView.findViewById(R.id.titleAlbum)
     val numberSong: TextView = itemView.findViewById(R.id.numberOfSongs)
 
-    fun render(album:Album, adapter: RecyclerView.Adapter<AlbumViewHolder>, holder: AlbumViewHolder){
+    fun render(album: Album, adapter: RecyclerView.Adapter<AlbumViewHolder>, holder: AlbumViewHolder){
         imageAlbumDefault.setImageResource(R.drawable.folder)
-        titleAlbum.text = album.title
-        numberSong.text = album.listSong.size.toString()
+        titleAlbum.text = album.nombre
+        numberSong.text = album.canciones.size.toString()
         albumLayout.setOnClickListener {
             val i = Intent(itemView.context, AlbumSongsActivity::class.java)
-            i.putParcelableArrayListExtra("songs", album.listSong)
-            i.putExtra("albumTitle", album.title)
-            i.putExtra("albumId", album.id)
+            i.putExtra("album", album)
             itemView.context.startActivity(i)
         }
         albumLayout.setOnLongClickListener {

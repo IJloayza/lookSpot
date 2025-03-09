@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/main"
     tools:openDrawer="start"
-    tools:context=".AlbumActivity">
+    tools:context=".screens.AlbumActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

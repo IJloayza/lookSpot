@@ -12,41 +12,41 @@
         android:theme="@style/Theme.LookSpot"
         tools:targetApi="31">
         <activity
-            android:name=".AlbumActivity"
+            android:name=".screens.AlbumActivity"
             android:exported="false" />
         <activity
-            android:name=".Loading"
+            android:name=".screens.Loading"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".screens.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".AlbumSongsActivity"
+            android:name=".screens.AlbumSongsActivity"
             android:exported="false" />
         <activity
-            android:name=".Welcome4"
+            android:name=".screens.Welcome4"
             android:exported="false" />
         <activity
-            android:name=".Welcome3"
+            android:name=".screens.Welcome3"
             android:exported="false" />
         <activity
-            android:name=".Welcome2"
+            android:name=".screens.Welcome2"
             android:exported="false" />
         <activity
-            android:name=".Welcome"
+            android:name=".screens.Welcome"
             android:exported="false" />
         <activity
-            android:name=".Menu"
+            android:name=".extras.classes.Menu"
             android:exported="false" />
         <activity
-            android:name=".PromptActivity"
+            android:name=".screens.PromptActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".screens.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.LookSpot.Starting">
             <intent-filter>

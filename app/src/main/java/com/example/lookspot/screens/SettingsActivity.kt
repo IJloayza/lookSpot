@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.screens
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import com.example.lookspot.extras.classes.Menu
+import com.example.lookspot.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 

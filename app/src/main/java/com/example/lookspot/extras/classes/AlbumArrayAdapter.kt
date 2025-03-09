@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.extras.classes
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import com.example.lookspot.R
+import com.example.lookspot.extras.models.Album
 
 class AlbumArrayAdapter(context: Context,
                         private val albums: List<Album>
@@ -25,7 +27,7 @@ class AlbumArrayAdapter(context: Context,
 
         val textView = view.findViewById<TextView>(R.id.albumName)
 
-        textView.text = getItem(position).title
+        textView.text = getItem(position).nombre
 
         return view
     }
@@ -37,7 +39,7 @@ class AlbumArrayAdapter(context: Context,
                 val results = if (query.isEmpty()) {
                     albums
                 } else {
-                    albums.filter { it.title.lowercase().contains(query) }
+                    albums.filter { it.nombre.lowercase().contains(query) }
                 }
 
                 return FilterResults().apply {

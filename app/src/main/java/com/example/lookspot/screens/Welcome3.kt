@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.screens
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -15,8 +15,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isEmpty
-import java.util.zip.Inflater
+import com.example.lookspot.R
+import com.example.lookspot.extras.classes.SongManager
 
 class Welcome3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,28 +38,28 @@ class Welcome3 : AppCompatActivity() {
         }
 
         val container: LinearLayout = findViewById(R.id.containerSong)
-
-        for (song in SongManager.songs.shuffled().take(2)) {
-            val songInflater = LayoutInflater.from(this)
-                .inflate(R.layout.item_song, container, false)
-
-            val imageSong: ImageView = songInflater.findViewById(R.id.imageSong)
-            val titleSong: TextView = songInflater.findViewById(R.id.titleSong)
-            val titleArtist: TextView = songInflater.findViewById(R.id.artistSong)
-            val toggleHeart: ToggleButton = songInflater.findViewById(R.id.toggle_heart)
-
-            val bitOptions: Options = Options().apply {
-                inSampleSize = 4
-            }
-            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, song.imagePort, bitOptions)
-
-            imageSong.setImageBitmap(bitmap)
-            titleSong.text = song.title
-            titleArtist.text = song.artist
-            toggleHeart.isChecked = false
-
-            container.addView(songInflater)
-        }
+//
+//        for (song in SongManager.songs.shuffled().take(2)) {
+//            val songInflater = LayoutInflater.from(this)
+//                .inflate(R.layout.item_song, container, false)
+//
+//            val imageSong: ImageView = songInflater.findViewById(R.id.imageSong)
+//            val titleSong: TextView = songInflater.findViewById(R.id.titleSong)
+//            val titleArtist: TextView = songInflater.findViewById(R.id.artistSong)
+//            val toggleHeart: ToggleButton = songInflater.findViewById(R.id.toggle_heart)
+//
+//            val bitOptions: Options = Options().apply {
+//                inSampleSize = 4
+//            }
+//            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, song.imagePort, bitOptions)
+//
+//            imageSong.setImageBitmap(bitmap)
+//            titleSong.text = song.title
+//            titleArtist.text = song.artist
+//            toggleHeart.isChecked = false
+//
+//            container.addView(songInflater)
+//        }
 
     }
 }

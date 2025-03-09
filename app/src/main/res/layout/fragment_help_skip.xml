@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelpSkip">
+    tools:context=".extras.classes.HelpSkip">
     <!-- Falta funcion de retorno a login page-->
     <LinearLayout
         android:id="@+id/skip"

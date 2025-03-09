@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Welcome2">
+    tools:context=".screens.Welcome2">
     <LinearLayout
         android:id="@+id/infoApp"
         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <fragment
-        android:name="com.example.lookspot.HelpSkip"
+        android:name="com.example.lookspot.extras.classes.HelpSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

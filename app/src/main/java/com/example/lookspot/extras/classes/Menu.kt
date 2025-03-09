@@ -1,4 +1,4 @@
-package com.example.lookspot
+package com.example.lookspot.extras.classes
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,13 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.lookspot.R
+import com.example.lookspot.screens.AlbumActivity
+import com.example.lookspot.screens.AlbumSongsActivity
+import com.example.lookspot.screens.MainActivity
+import com.example.lookspot.screens.PromptActivity
+import com.example.lookspot.screens.SettingsActivity
+import com.example.lookspot.screens.Welcome
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
