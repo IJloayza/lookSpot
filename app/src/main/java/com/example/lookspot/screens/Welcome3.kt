@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.SongManager
+import com.example.lookspot.extras.models.SongInflate
 
 class Welcome3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,28 +39,38 @@ class Welcome3 : AppCompatActivity() {
         }
 
         val container: LinearLayout = findViewById(R.id.containerSong)
-//
-//        for (song in SongManager.songs.shuffled().take(2)) {
-//            val songInflater = LayoutInflater.from(this)
-//                .inflate(R.layout.item_song, container, false)
-//
-//            val imageSong: ImageView = songInflater.findViewById(R.id.imageSong)
-//            val titleSong: TextView = songInflater.findViewById(R.id.titleSong)
-//            val titleArtist: TextView = songInflater.findViewById(R.id.artistSong)
-//            val toggleHeart: ToggleButton = songInflater.findViewById(R.id.toggle_heart)
-//
-//            val bitOptions: Options = Options().apply {
-//                inSampleSize = 4
-//            }
-//            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, song.imagePort, bitOptions)
-//
-//            imageSong.setImageBitmap(bitmap)
-//            titleSong.text = song.title
-//            titleArtist.text = song.artist
-//            toggleHeart.isChecked = false
-//
-//            container.addView(songInflater)
-//        }
+        val songs = ArrayList<SongInflate>().apply {
+            add(SongInflate("Godzilla", R.drawable.img_musictobemurderedby, "Eminem"))
+            add(SongInflate("My eyes", R.drawable.img_utopia, "Travis Scott"))
+            add(SongInflate("Predator", R.drawable.img_predator, "Ice Cube"))
+            add(SongInflate("Annihilate", R.drawable.img_annihilate, "Metro Boomin"))
+            add(SongInflate("Zero", R.drawable.img_zero, "LYMK"))
+            add(SongInflate("I’ve been searching for you", R.drawable.img_centaur, "Jessie Mueller"))
+            add(SongInflate("I wonder", R.drawable.img_graduation, "Kanye West"))
+            add(SongInflate("Sicko mode", R.drawable.img_sickoworld, "Drake, Travis Scott"))
+            add(SongInflate("Superhero", R.drawable.img_heroesvillains, "Future"))
+        }
+        for (song in songs.shuffled().take(2)) {
+            val songInflater = LayoutInflater.from(this)
+                .inflate(R.layout.item_song, container, false)
+
+            val imageSong: ImageView = songInflater.findViewById(R.id.imageSong)
+            val titleSong: TextView = songInflater.findViewById(R.id.titleSong)
+            val titleArtist: TextView = songInflater.findViewById(R.id.artistSong)
+            val toggleHeart: ToggleButton = songInflater.findViewById(R.id.toggle_heart)
+
+            val bitOptions: Options = Options().apply {
+                inSampleSize = 4
+            }
+            val bitmap: Bitmap = BitmapFactory.decodeResource(resources, song.image, bitOptions)
+
+            imageSong.setImageBitmap(bitmap)
+            titleSong.text = song.title
+            titleArtist.text = song.artist
+            toggleHeart.isChecked = false
+
+            container.addView(songInflater)
+        }
 
     }
 }

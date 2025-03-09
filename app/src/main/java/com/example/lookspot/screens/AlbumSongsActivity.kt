@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.example.lookspot.extras.classes.Menu
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.SongsAdapter
 import com.example.lookspot.extras.models.Album
+import com.example.lookspot.extras.models.SongViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -25,6 +27,8 @@ class AlbumSongsActivity : AppCompatActivity() {
     private lateinit var drawerNavBar: NavigationView
     private lateinit var title: TextView
     private lateinit var returnBtn: ImageButton
+    private val viewModel: SongViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -58,6 +62,7 @@ class AlbumSongsActivity : AppCompatActivity() {
         if (album != null) {
             adapter = SongsAdapter(this, album.canciones.toMutableList()) { song ->
                 album.removeSong(song)
+                viewModel.deleteSong(album.id, song.id)
             }
         }
 
