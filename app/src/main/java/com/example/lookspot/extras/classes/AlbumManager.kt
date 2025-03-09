@@ -19,9 +19,6 @@ object AlbumManager {
         return albums.contains(album)
     }
 
-    fun getFavorites(): Album {
-        return albums[0]
-    }
 
     fun getAlbums(): List<Album> {
         return albums
