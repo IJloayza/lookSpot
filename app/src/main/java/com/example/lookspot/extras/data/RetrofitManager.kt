@@ -1,13 +1,11 @@
 package com.example.lookspot.extras.data
 
-import com.example.lookspot.R
 import com.example.lookspot.extras.models.Album
 import com.example.lookspot.extras.models.AlbumCreate
 import com.example.lookspot.extras.models.Song
 import com.example.lookspot.extras.models.User
 import com.example.lookspot.extras.models.UserLogin
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,13 +13,9 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Path
-import java.io.InputStream
-import java.security.KeyStore
 import java.security.SecureRandom
 import java.security.cert.CertificateException
-import java.security.cert.CertificateFactory
 import javax.net.ssl.*
 import java.security.cert.X509Certificate
 import javax.net.ssl.SSLContext
