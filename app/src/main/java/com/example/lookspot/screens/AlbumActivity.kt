@@ -3,18 +3,20 @@ package com.example.lookspot.screens
 import android.content.Intent
 import android.os.Bundle
 import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lookspot.R
 import com.example.lookspot.extras.classes.AlbumAdapter
 import com.example.lookspot.extras.classes.AlbumArrayAdapter
 import com.example.lookspot.extras.classes.AlbumManager
 import com.example.lookspot.extras.classes.Menu
-import com.example.lookspot.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -86,6 +88,22 @@ class AlbumActivity : AppCompatActivity() {
     private fun initAddBtn() {
         val addBtn = findViewById<ImageButton>(R.id.addBtn)
         addBtn.setOnClickListener {
+
+            // Carrega un dialog amb un camp per editar el nom actual
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.album_name_layout, null)
+            builder.setView(dialogView)
+                .setTitle("Add album")
+                .setPositiveButton("Add") { _, _ ->
+                    val nameField = dialogView.findViewById<EditText>(R.id.nameField)
+                    val name = nameField.text.toString()
+
+
+                    initRecyclerView()
+                }
+
+
 
         }
     }
