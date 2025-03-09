@@ -41,7 +41,7 @@ interface RetrofitService {
     suspend fun postAlbum(@Body album: AlbumCreate): Response<Album>
 
     @POST("/album/{album_id}/cancion")
-    suspend fun postSongInAlbum(@Body albumId: Int,@Body song:Song): Response<Song>
+    suspend fun postSongInAlbum(@Path("album_id") albumId: Int,@Body song:Song): Response<Song>
 
 //// Próxima tarea de M7
 //    @PUT("/album/{album_id}")
@@ -51,7 +51,7 @@ interface RetrofitService {
     suspend fun deleteAlbum(@Path("album_id") albumId:Int):Response<Unit>
 
     @DELETE("/album/{album_id}/cancion/{cancion_id}")
-    suspend fun deleteSong(@Path("album_id")albumId:Int, @Path("cancion_id")cancionId:Int):Response<Unit>
+    suspend fun deleteSong(@Path("album_id")albumId:Int, @Path("cancion_id")cancionId:String):Response<Unit>
 }
 
 

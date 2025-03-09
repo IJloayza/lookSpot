@@ -77,7 +77,7 @@ class SongViewModel : ViewModel() {
         }
     }
 
-    fun deleteSong(albumId: Int, songId: Int){
+    fun deleteSong(albumId: Int, songId: String){
         viewModelScope.launch {
             try {
                 val response = RetrofitManager.instance.deleteSong(albumId, songId)
