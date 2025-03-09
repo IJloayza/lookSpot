@@ -133,6 +133,7 @@ class AlbumViewModel : ViewModel() {
                 val response = RetrofitManager.instance.postAlbum(albumCreate)
                 if (response.isSuccessful) {
                     val album = response.body()
+                    album?.canciones = ArrayList()
                     Log.d("Retrofit", "Album Existe: $album")
                     _album.value = album
                 } else {

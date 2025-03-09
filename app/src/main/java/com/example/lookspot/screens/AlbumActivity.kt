@@ -43,6 +43,17 @@ class AlbumActivity : AppCompatActivity() {
         initRecyclerView()
         initAddBtn()
 
+        // Observe the album LiveData
+        albumViewModel.album.observe(this) { newAlbum ->
+            if (newAlbum != null) {
+                println("New album created: ${newAlbum.nombre}")
+                AlbumManager.addAlbum(newAlbum)
+                initRecyclerView()
+            } else {
+                println("Error creating album")
+            }
+        }
+
     }
 
     private fun initRecyclerView(){
@@ -110,24 +121,12 @@ class AlbumActivity : AppCompatActivity() {
                     val id = UserManager.getUser().id
 
                     albumViewModel.postAlbum(id, name)
-                    // Observe the album LiveData
-                    albumViewModel.album.observe(this) { newAlbum ->
-                        if (newAlbum != null) {
-                            println("New album created: ${newAlbum.nombre}")
-                            AlbumManager.addAlbum(newAlbum)
-                            initRecyclerView()
-                        } else {
-                            println("Error creating album")
-                        }
-                    }
-
-                    initRecyclerView()
                 }
 
             builder.show()
 
-
-
         }
+
+
     }
 }
