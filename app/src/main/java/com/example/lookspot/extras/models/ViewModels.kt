@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lookspot.extras.data.RetrofitManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SongViewModel : ViewModel() {
@@ -58,6 +57,41 @@ class SongViewModel : ViewModel() {
             }
         }
     }
+
+    fun postSong(albumId: Int, song: Song){
+        viewModelScope.launch {
+            try {
+                val response = RetrofitManager.instance.postSongInAlbum(albumId, song)
+                if (response.isSuccessful) {
+                    val song = response.body()
+                    Log.d("Retrofit", "Song: $song")
+                    _song.value = song
+                } else {
+                    Log.e("Retrofit", "Error: ${response.errorBody()}")
+                    _song.value = null
+                }
+            } catch (e: Exception) {
+                Log.e("Retrofit", "Error solicitud: ${e.message}")
+                _songs.value = null
+            }
+        }
+    }
+
+    fun deleteSong(albumId: Int, songId: Int){
+        viewModelScope.launch {
+            try {
+                val response = RetrofitManager.instance.deleteSong(albumId, songId)
+                if (response.isSuccessful) {
+                    val song = response.body()
+                    Log.d("Retrofit", "Song eliminado")
+                } else {
+                    Log.e("Retrofit", "Error: ${response.errorBody()}")
+                }
+            } catch (e: Exception) {
+                Log.e("Retrofit", "Error solicitud: ${e.message}")
+            }
+        }
+    }
 }
 
 class UserViewModel : ViewModel() {
@@ -89,9 +123,28 @@ class UserViewModel : ViewModel() {
 class AlbumViewModel : ViewModel() {
 
     // LiveData para notificar el resultado de la operación
-    private val _deleteStatus = MutableLiveData<Boolean>()
-    val deleteStatus: LiveData<Boolean> get() = _deleteStatus
+    private val _album = MutableLiveData<Album>()
+    val album: LiveData<Album> get() = _album
 
+    fun postAlbum(idUser: Int, nomAlbum: String){
+        viewModelScope.launch {
+            try {
+                val albumCreate = AlbumCreate(idUser, nomAlbum)
+                val response = RetrofitManager.instance.postAlbum(albumCreate)
+                if (response.isSuccessful) {
+                    val album = response.body()
+                    Log.d("Retrofit", "Album Existe: $album")
+                    _album.value = album
+                } else {
+                    Log.e("Retrofit", "Album No Existe: ${response.errorBody()}")
+                    _album.value = null
+                }
+            } catch (e: Exception) {
+                Log.e("Retrofit", "Fallo en la solicitud: ${e.message}")
+                _album.value = null
+            }
+        }
+    }
     // Eliminar un álbum por su ID
     fun deleteAlbum(id: Int) {
         viewModelScope.launch {
@@ -99,14 +152,11 @@ class AlbumViewModel : ViewModel() {
                 val response = RetrofitManager.instance.deleteAlbum(id)
                 if (response.isSuccessful) {
                     Log.d("Retrofit", "Álbum eliminado")
-                    _deleteStatus.value = true
                 } else {
                     Log.e("Retrofit", "Error al eliminar álbum: ${response.errorBody()?.string()}")
-                    _deleteStatus.value = false
                 }
             } catch (e: Exception) {
                 Log.e("Retrofit", "Fallo en la solicitud: ${e.message}")
-                _deleteStatus.value = false
             }
         }
     }
