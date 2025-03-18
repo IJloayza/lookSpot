@@ -8,7 +8,8 @@ import com.example.lookspot.extras.models.Album
 
 class AlbumAdapter(
     val albumList:List<Album>,
-    val onRemove: (Album) -> Unit
+    val onRemove: (Album) -> Unit,
+    val onUpdate: (Int, String) -> Unit
     ) : RecyclerView.Adapter<AlbumViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,6 +25,6 @@ class AlbumAdapter(
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val item = albumList[position]
-        holder.render(item, holder, onRemove)
+        holder.render(position, item, holder, onRemove, onUpdate)
     }
 }

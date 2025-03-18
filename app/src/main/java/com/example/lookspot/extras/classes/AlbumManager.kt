@@ -15,8 +15,15 @@ object AlbumManager {
         albums.remove(album)
     }
 
+    fun updateAlbum(album: Album, newName: String){
+        this.getAlbumById(album.id)?.nombre = newName
+    }
+
     fun isAlbum(album: Album): Boolean {
-        return albums.contains(album)
+        for (alb in albums) {
+            if (alb.id == album.id) return true
+        }
+        return false
     }
 
 

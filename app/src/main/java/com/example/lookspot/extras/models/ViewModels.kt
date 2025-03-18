@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lookspot.extras.data.RetrofitManager
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 class SongViewModel : ViewModel() {
 
@@ -157,6 +158,28 @@ class AlbumViewModel : ViewModel() {
                     Log.e("Retrofit", "Error al eliminar álbum: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
+                Log.e("Retrofit", "Fallo en la solicitud: ${e.message}")
+            }
+        }
+    }
+
+    fun changeAlbum(albumId: Int, albumName: String){
+        viewModelScope.launch {
+            try {
+                val albumUpdateName = AlbumUpdate(albumName)
+                val response = RetrofitManager.instance.changeAlbum(albumId, albumUpdateName)
+                if (response.isSuccessful) {
+                    val album = response.body()
+                    if(album?.canciones.isNullOrEmpty()){
+                        album?.canciones = ArrayList()
+                    }
+                    Log.d("Retrofit", "Album Cambiado: $album")
+                    _album.value = album
+                } else {
+                    Log.e("Retrofit", "Album No Existe: ${response.errorBody()}")
+                    _album.value = null
+                }
+            }catch (e: Exception){
                 Log.e("Retrofit", "Fallo en la solicitud: ${e.message}")
             }
         }

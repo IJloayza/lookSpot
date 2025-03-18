@@ -42,18 +42,23 @@ class AlbumActivity : AppCompatActivity() {
         initSearcher()
         initRecyclerView()
         initAddBtn()
-
         // Observe the album LiveData
+        observeAlbum()
+    }
+
+    private fun observeAlbum() {
         albumViewModel.album.observe(this) { newAlbum ->
             if (newAlbum != null) {
                 println("New album created: ${newAlbum.nombre}")
-                AlbumManager.addAlbum(newAlbum)
+                //Si el album ya existe no lo agrega
+                if (!AlbumManager.isAlbum(newAlbum)) {
+                    AlbumManager.addAlbum(newAlbum)
+                }
                 initRecyclerView()
             } else {
                 println("Error creating album")
             }
         }
-
     }
 
     private fun initRecyclerView(){
@@ -61,9 +66,10 @@ class AlbumActivity : AppCompatActivity() {
         val manager = LinearLayoutManager(this)
         val decoration = DividerItemDecoration(this, manager.orientation)
         recyclerView.layoutManager = manager
-        recyclerView.adapter = AlbumAdapter(AlbumManager.getAlbums()) {
-            albumViewModel.deleteAlbum(it.id)
-        }
+        recyclerView.adapter = AlbumAdapter(AlbumManager.getAlbums(),
+            {albumViewModel.deleteAlbum(it.id)},
+            {albId, name -> albumViewModel.changeAlbum(albId, name)}
+        )
         recyclerView.addItemDecoration(decoration)
     }
 
@@ -82,7 +88,6 @@ class AlbumActivity : AppCompatActivity() {
                 //Envío to do el album
                 putExtra("album", selectedAlbum.id)
             }
-
             startActivity(intent)
         }
 
@@ -119,7 +124,6 @@ class AlbumActivity : AppCompatActivity() {
                     val nameField = dialogView.findViewById<EditText>(R.id.nameField)
                     val name = nameField.text.toString()
                     val id = UserManager.getUser().id
-
                     albumViewModel.postAlbum(id, name)
                 }
 

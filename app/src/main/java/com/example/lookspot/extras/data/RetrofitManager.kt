@@ -2,6 +2,7 @@ package com.example.lookspot.extras.data
 
 import com.example.lookspot.extras.models.Album
 import com.example.lookspot.extras.models.AlbumCreate
+import com.example.lookspot.extras.models.AlbumUpdate
 import com.example.lookspot.extras.models.Song
 import com.example.lookspot.extras.models.User
 import com.example.lookspot.extras.models.UserLogin
@@ -13,6 +14,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import java.security.SecureRandom
 import java.security.cert.CertificateException
@@ -37,9 +39,9 @@ interface RetrofitService {
     @POST("/album/{album_id}/cancion")
     suspend fun postSongInAlbum(@Path("album_id") albumId: Int,@Body song:Song): Response<Song>
 
-//// Próxima tarea de M7
-//    @PUT("/album/{album_id}")
-//    suspend fun changeAlbum(@Path("album_id") albumId:Int):Response<Album>
+// Próxima tarea de M7
+    @PUT("/album/{album_id}")
+    suspend fun changeAlbum(@Path("album_id") albumId:Int, @Body name: AlbumUpdate):Response<Album>
 
     @DELETE("/album/{album_id}")
     suspend fun deleteAlbum(@Path("album_id") albumId:Int):Response<Unit>
