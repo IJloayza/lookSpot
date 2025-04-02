@@ -11,20 +11,23 @@ import com.google.firebase.ktx.Firebase
 
 
 data class Statistics(
-    var tirades: Int = 0,
-    var numdobles: Int = 0,
-    var daus: ArrayList<Int> = arrayListOf<Int>(0, 0, 0, 0, 0, 0)
+    var numAlbums: Int = 0,
+    var numFavs: Int = 0,
+    var numQueries: Int = 0,
+    var averageSongDuration: Double = 0.0
 )
 
 class AnalyticsApp : Application() {
 
     companion object {
+        private const val DEVICES_COLLECTION = "Devices"
+
         var idDispositiu = ""
         var estadistica = Statistics()
     }
 
     //La variable s'inicialitzarà la primera vegada que s'utilitzi.
-    val db: FirebaseFirestore by lazy { Firebase.firestore }
+    private val db: FirebaseFirestore by lazy { Firebase.firestore }
 
     @SuppressLint("HardwareIds")
     override fun onCreate() {
@@ -40,7 +43,7 @@ class AnalyticsApp : Application() {
         //Obtenim les dades de la base de dades.
         //Guardarem les tirades en la col·lecció Devices.
         //Per cada Device(identificat amb un id), es guardaran les estadístiques.
-        val doc = db.collection("Devices").document(idDispositiu)
+        val doc = db.collection(DEVICES_COLLECTION).document(idDispositiu)
 
         //Obtenim el document corresponent al nostre dispositiu
         doc.get()
@@ -52,7 +55,7 @@ class AnalyticsApp : Application() {
 
                 } else {
                     //El nostre dispositiu no estava registrat, i el guardem amb valors per defecte.
-                    db.collection("Devices").document(idDispositiu).set(estadistica)
+                    db.collection(DEVICES_COLLECTION).document(idDispositiu).set(estadistica)
                 }
             }
             .addOnFailureListener { exception ->
@@ -62,7 +65,7 @@ class AnalyticsApp : Application() {
     }
 
     fun saveStats() {
-        db.collection("Devices").document(idDispositiu).set(estadistica)
+        db.collection(DEVICES_COLLECTION).document(idDispositiu).set(estadistica)
             .addOnSuccessListener {
                 Log.i("saveStats","Dades guardades correctament")
             }
