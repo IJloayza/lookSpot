@@ -1,6 +1,7 @@
 package com.example.lookspot.extras.classes
 
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
@@ -36,14 +37,18 @@ class AlbumViewHolder(
             itemView.context.startActivity(i)
         }
         albumLayout.setOnLongClickListener {
+
             val builder = AlertDialog.Builder(itemView.context);
             builder.setTitle("Change name for album: ${album.nombre}");
 
-            val input = EditText(itemView.context);
-            builder.setView(input);
+            //val input = EditText(itemView.context);
+            val input = LayoutInflater.from(itemView.context).inflate(R.layout.album_name_layout, null, false)
+            builder.setView(input)
 
             builder.setPositiveButton("Change") {a, b ->
-            val newName = input.text.toString().trim();
+            val newName = input.findViewById<EditText>(R.id.nameField)
+                .text.toString().trim();
+
             if (!newName.isEmpty()) {
                 AlbumManager.updateAlbum(album, newName)
                 adapter.notifyItemChanged(position)

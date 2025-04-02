@@ -38,6 +38,7 @@ class SongsAdapter(
         Glide.with(context)
             .load(song.image_url)
             .into(holder.imageSong)
+
         holder.titleSong.text = song.nombre
         holder.titleArtist.text = song.artista
 
