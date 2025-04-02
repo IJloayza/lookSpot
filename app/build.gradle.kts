@@ -51,8 +51,10 @@ dependencies {
     implementation(libs.http.interceptor)
 
     // firebase
-    implementation(libs.firebase.bom)
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore.ktx)
+
 
 
     implementation(libs.glide)
