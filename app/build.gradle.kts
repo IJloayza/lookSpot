@@ -49,7 +49,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.lyfecycleandroid)
     implementation(libs.http.interceptor)
-    implementation (libs.mpandroidchart)
+    implementation(libs.mpandroidchart)
+
     // firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)

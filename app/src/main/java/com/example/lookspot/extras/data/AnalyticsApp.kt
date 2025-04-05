@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.provider.Settings
 import android.util.Log
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
@@ -27,7 +26,7 @@ class AnalyticsApp : Application() {
     }
 
     //La variable s'inicialitzarà la primera vegada que s'utilitzi.
-    private val db: FirebaseFirestore by lazy { Firebase.firestore }
+    private val db by lazy { Firebase.firestore }
 
     @SuppressLint("HardwareIds")
     override fun onCreate() {
