@@ -1,7 +1,9 @@
 package com.example.lookspot.screens
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -25,6 +27,12 @@ class SettingsActivity : AppCompatActivity() {
         val drawerNavBar : NavigationView = findViewById(R.id.nav_view)
         Menu.configureBottomNavBar(navigationBar, this)
         Menu.configureDrawerNavBar(drawerNavBar, this)
+
+        val stats = findViewById<Button>(R.id.stats)
+        stats.setOnClickListener {
+            val i = Intent(this, StatsActivity::class.java)
+            startActivity(i)
+        }
 
         // Obtener las preferencias compartidas
         preferences = getSharedPreferences("AppSettings", MODE_PRIVATE)

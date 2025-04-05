@@ -80,6 +80,9 @@ class PromptActivity : AppCompatActivity() {
                 // Limpiar el contenedor antes de agregar nuevas vistas
                 resultContainer.removeAllViews()
 
+                //Llamar al firebaseStore para pasarle el total de canciones en este prompt y aumentar el numero de prompts en 1
+
+
                 // Inflar cada canción en el LinearLayout
                 for (song in songs) {
                     val songView = LayoutInflater.from(this).inflate(R.layout.item_song, resultContainer, false)
