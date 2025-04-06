@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.Menu
+import com.example.lookspot.extras.classes.UserManager
 import com.example.lookspot.extras.models.Estadistica
 import com.example.lookspot.extras.models.EstadisticaViewModel
 import com.github.mikephil.charting.charts.BarChart
@@ -49,7 +50,11 @@ class StatsActivity : AppCompatActivity() {
 
         vmodel.resultEstadistica.observe(this,this::OnEstaditicaActualitzada)
         vmodel.saved.observe(this,this::OnEstadisticaGuardada)
-        vmodel.actualitzaEstadistica()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vmodel.cargarEstadistica(UserManager.getUser().id.toString())
     }
 
     private fun OnEstadisticaGuardada(success: Boolean) {
@@ -68,9 +73,13 @@ class StatsActivity : AppCompatActivity() {
         promptsText.text = dades.numPrompts.toString()
 
         findViewById<TextView>(R.id.favs).text = dades.numAsserts.toString()
-        val durationInSeconds = dades.averageSongDuration
-        val minutes = durationInSeconds / 60
-        val seconds = durationInSeconds % 60
+        val averageSongDuration = dades.getAverageSongDuration() // en minutos
+        println(averageSongDuration)
+
+        val minutes = averageSongDuration.toInt()
+        val decimalPart = averageSongDuration - minutes
+        val seconds = (decimalPart * 60).toInt()
+
         findViewById<TextView>(R.id.avgDuration).text = String.format("%02d:%02d", minutes, seconds)
 
         updateBarGraph(dades)
@@ -86,6 +95,7 @@ class StatsActivity : AppCompatActivity() {
 
     private fun resetStats(view: View?) {
         vmodel.resetEstadistica()
+        vmodel.guardarEstadistica(UserManager.getUser().id.toString())
     }
 
     private fun updatePieGraph(estadistica: Estadistica) {
@@ -122,7 +132,7 @@ class StatsActivity : AppCompatActivity() {
         val tipoAlbumCount = mapOf(
             "single" to estadistica.numSingle,
             "album" to estadistica.numAlbum,
-            "compilation" to estadistica.numComp
+            "compilation" to estadistica.numCompilation
         )
 
         val tipos = listOf("single", "album", "compilation")

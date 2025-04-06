@@ -61,6 +61,9 @@ object EstadisticaProvider {
 
     fun afegeixResult(listOfSongs: List<Song>){
         dataEstadistica.numResults += listOfSongs.size
+        afegeixPrompt()
+        afegeixCategories(listOfSongs)
+        afegeixDuracioNovaCancio(listOfSongs)
     }
 
     fun afegeixCategories(listOfSongs: List<Song>){
@@ -69,20 +72,15 @@ object EstadisticaProvider {
 
         dataEstadistica.numSingle += conteoTipos["single"] ?: 0
         dataEstadistica.numAlbum += conteoTipos["album"] ?: 0
-        dataEstadistica.numComp += conteoTipos["compilation"] ?: 0
+        dataEstadistica.numCompilation += conteoTipos["compilation"] ?: 0
     }
 
     fun afegeixDuracioNovaCancio(listOfSongs: List<Song>) {
-        val totalDuracionSegundos = listOfSongs.sumOf { it.duration } // total en segundos
-        val totalDuracionMinutos = totalDuracionSegundos.toDouble() / 60
-        val numCancionesNuevas = listOfSongs.size
-        val numCancionesAntiguas = dataEstadistica.numResults
-        val duracionMediaAntiguaMinutos = dataEstadistica.averageSongDuration
 
-        val nuevaDuracionMediaMinutos =
-            (duracionMediaAntiguaMinutos * numCancionesAntiguas + totalDuracionMinutos) / (numCancionesAntiguas + numCancionesNuevas)
+        val duracioNovaCancio = listOfSongs.sumOf { it.duration / 1000L / 60L }
 
-        dataEstadistica.averageSongDuration = nuevaDuracionMediaMinutos.toLong()
+        dataEstadistica.averageDurationSum += duracioNovaCancio
+
 
     }
 }

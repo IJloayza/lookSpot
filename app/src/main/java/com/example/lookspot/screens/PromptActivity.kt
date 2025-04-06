@@ -83,10 +83,8 @@ class PromptActivity : AppCompatActivity() {
                 resultContainer.removeAllViews()
 
                 //Llamar al firebaseStore para pasarle el total de canciones en este prompt y aumentar el numero de prompts en 1
-                EstadisticaProvider.afegeixPrompt()
                 EstadisticaProvider.afegeixResult(songs)
-                EstadisticaProvider.afegeixDuracioNovaCancio(songs)
-                EstadisticaProvider.afegeixCategories(songs)
+
                 estadisticaViewModel.guardarEstadistica(
                     UserManager.getUser().id.toString())
 
@@ -115,6 +113,8 @@ class PromptActivity : AppCompatActivity() {
                                 // Mostrar un mensaje de confirmación
                                 //Añadir cancion asertada para el usuario
                                 EstadisticaProvider.afegeixFav()
+                                estadisticaViewModel.guardarEstadistica(
+                                    UserManager.getUser().id.toString())
                                 Toast.makeText(this, "Cançó afegida a ${selectedAlbum.nombre}", Toast.LENGTH_SHORT).show()
                             }
                             .setNegativeButton("Cancelar", null)
