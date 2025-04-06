@@ -5,12 +5,13 @@ import com.example.lookspot.extras.models.Estadistica
 import com.example.lookspot.extras.models.Song
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 object EstadisticaProvider {
     //private val firestore = FirebaseFirestore.getInstance()
     //La variable s'inicialitzarà la primera vegada que s'utilitzi.
+    private const val USER_STATS_COLLECTIONS = "UserStats"
+
     val db: FirebaseFirestore by lazy { Firebase.firestore }
     var dataEstadistica=Estadistica()
 
@@ -23,10 +24,10 @@ object EstadisticaProvider {
             //Obtenim les dades de la base de dades.
             //Guardarem les tirades en la col·lecció Devices.
             //Per cada Device(identificat amb un id), es guardaran les estadístiques.
-            val doc = db.collection("Devices").document(idDispositiu)
+            val doc = db.collection(USER_STATS_COLLECTIONS).document(idDispositiu)
                 .get()
                 .await()
-            val valorbbdd=doc.toObject<Estadistica>()
+            val valorbbdd=doc.toObject(Estadistica::class.java)
             if (valorbbdd != null) {
                 dataEstadistica=valorbbdd
                 Result.success(valorbbdd)
@@ -42,10 +43,9 @@ object EstadisticaProvider {
         }
     }
 
-    suspend  fun guardarEstadistica(idDispositiu:String, estadistica:Estadistica): Result<Unit> {
+    suspend  fun guardarEstadistica(idDispositiu:String): Result<Unit> {
         return try {
-            db.collection("Devices").document(idDispositiu).set(estadistica).await()
-            dataEstadistica=estadistica
+            db.collection(USER_STATS_COLLECTIONS).document(idDispositiu).set(dataEstadistica).await()
             Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
@@ -60,23 +60,29 @@ object EstadisticaProvider {
     }
 
     fun afegeixResult(listOfSongs: List<Song>){
-        dataEstadistica.numResults = listOfSongs.size
+        dataEstadistica.numResults += listOfSongs.size
     }
 
     fun afegeixCategories(listOfSongs: List<Song>){
         // Uso de grouping para segregar por los tipos que puede haber de song
-        val conteoTipos = listOfSongs.groupingBy { it.albumType.lowercase() }.eachCount()
+        val conteoTipos = listOfSongs.groupingBy { it.album_type.lowercase() }.eachCount()
 
-        dataEstadistica.numSingle = conteoTipos["single"] ?: 0
-        dataEstadistica.numAlbum = conteoTipos["album"] ?: 0
-        dataEstadistica.numComp = conteoTipos["compilation"] ?: 0
+        dataEstadistica.numSingle += conteoTipos["single"] ?: 0
+        dataEstadistica.numAlbum += conteoTipos["album"] ?: 0
+        dataEstadistica.numComp += conteoTipos["compilation"] ?: 0
     }
 
     fun afegeixDuracioNovaCancio(listOfSongs: List<Song>) {
-        val totalDuracion = listOfSongs.sumOf { it.duracion } // total en segundos
-        val duracionMediaSegundos = if (listOfSongs.isNotEmpty()) totalDuracion / listOfSongs.size else 0L
-        val duracionMediaMinutos = duracionMediaSegundos / 60L
+        val totalDuracionSegundos = listOfSongs.sumOf { it.duration } // total en segundos
+        val totalDuracionMinutos = totalDuracionSegundos.toDouble() / 60
+        val numCancionesNuevas = listOfSongs.size
+        val numCancionesAntiguas = dataEstadistica.numResults
+        val duracionMediaAntiguaMinutos = dataEstadistica.averageSongDuration
 
-        dataEstadistica.averageSongDuration = duracionMediaMinutos
+        val nuevaDuracionMediaMinutos =
+            (duracionMediaAntiguaMinutos * numCancionesAntiguas + totalDuracionMinutos) / (numCancionesAntiguas + numCancionesNuevas)
+
+        dataEstadistica.averageSongDuration = nuevaDuracionMediaMinutos.toLong()
+
     }
 }

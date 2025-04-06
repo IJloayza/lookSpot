@@ -1,6 +1,5 @@
 package com.example.lookspot.screens
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +17,8 @@ import com.example.lookspot.extras.classes.Menu
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.AlbumManager
 import com.example.lookspot.extras.classes.EstadisticaProvider
+import com.example.lookspot.extras.classes.UserManager
+import com.example.lookspot.extras.models.EstadisticaViewModel
 import com.example.lookspot.extras.models.SongViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -26,6 +26,7 @@ import com.google.android.material.navigation.NavigationView
 
 class PromptActivity : AppCompatActivity() {
     private val viewModel: SongViewModel by viewModels()
+    private val estadisticaViewModel: EstadisticaViewModel by viewModels { EstadisticaViewModel.Factory }
     private lateinit var prompt: EditText
     private lateinit var resultContainer: LinearLayout
 
@@ -86,6 +87,9 @@ class PromptActivity : AppCompatActivity() {
                 EstadisticaProvider.afegeixResult(songs)
                 EstadisticaProvider.afegeixDuracioNovaCancio(songs)
                 EstadisticaProvider.afegeixCategories(songs)
+                estadisticaViewModel.guardarEstadistica(
+                    UserManager.getUser().id.toString())
+
                 // Inflar cada canción en el LinearLayout
                 for (song in songs) {
                     val songView = LayoutInflater.from(this).inflate(R.layout.item_song, resultContainer, false)
@@ -119,8 +123,8 @@ class PromptActivity : AppCompatActivity() {
                     }
 
                     // Asignar los datos de la cancion
-                    songName.text = song.nombre
-                    artistName.text = song.artista
+                    songName.text = song.name
+                    artistName.text = song.artist
 
                     // Cargar imagen con Glide
                     Glide.with(this)

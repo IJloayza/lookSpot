@@ -9,25 +9,47 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lookspot.R
+import com.example.lookspot.extras.classes.Menu
 import com.example.lookspot.extras.models.Estadistica
 import com.example.lookspot.extras.models.EstadisticaViewModel
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 class StatsActivity : AppCompatActivity() {
 
     private val vmodel: EstadisticaViewModel by viewModels { EstadisticaViewModel.Factory }
+    private lateinit var pieChart: PieChart
+    private lateinit var barChart: BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
 
+        pieChart = findViewById(R.id.piechartDobles)
+        barChart = findViewById(R.id.barchartDaus)
 
+        val bottomNavBar = findViewById<BottomNavigationView>(R.id.nav_bar)
+        val drawerNavBar : NavigationView = findViewById(R.id.nav_view)
+        Menu.configureDrawerNavBar(drawerNavBar, this)
+        Menu.configureBottomNavBar(bottomNavBar, this)
 
         val btnResetStats = findViewById<Button>(R.id.btnResetStats)
         btnResetStats.setOnClickListener(this::resetStats)
 
         vmodel.resultEstadistica.observe(this,this::OnEstaditicaActualitzada)
         vmodel.saved.observe(this,this::OnEstadisticaGuardada)
-        vmodel.actualitzaEstadística()
+        vmodel.actualitzaEstadistica()
     }
 
     private fun OnEstadisticaGuardada(success: Boolean) {
@@ -45,6 +67,12 @@ class StatsActivity : AppCompatActivity() {
         val promptsText = findViewById<TextView>(R.id.prompts)
         promptsText.text = dades.numPrompts.toString()
 
+        findViewById<TextView>(R.id.favs).text = dades.numAsserts.toString()
+        val durationInSeconds = dades.averageSongDuration
+        val minutes = durationInSeconds / 60
+        val seconds = durationInSeconds % 60
+        findViewById<TextView>(R.id.avgDuration).text = String.format("%02d:%02d", minutes, seconds)
+
         updateBarGraph(dades)
         updatePieGraph(dades)
         if (result.isFailure) {
@@ -57,7 +85,7 @@ class StatsActivity : AppCompatActivity() {
     }
 
     private fun resetStats(view: View?) {
-        vmodel.resetEstadística()
+        vmodel.resetEstadistica()
     }
 
     private fun updatePieGraph(estadistica: Estadistica) {

@@ -220,21 +220,21 @@ class EstadisticaViewModel(private val dataprovider: EstadisticaProvider) : View
             _resultEstadistica.value=result
         }
     }
-    fun actualitzaEstadística(){
+    fun actualitzaEstadistica(){
         _resultEstadistica.value=Result.success(dataprovider.dataEstadistica)
     }
-    fun resetEstadística(){
+    fun resetEstadistica(){
         dataprovider.dataEstadistica=Estadistica()
         _resultEstadistica.value=Result.success(dataprovider.dataEstadistica)
     }
-    fun guardarEstadistica(idDispositiu:String) {
+    fun guardarEstadistica(idDispositiu: String) {
         viewModelScope.launch {
-            val result= dataprovider.guardarEstadistica(idDispositiu,dataprovider.dataEstadistica)
+            val result= dataprovider.guardarEstadistica(idDispositiu)
             _saved.value=result.isSuccess
         }
     }
 
-    fun ActualitzaEstadistica(list: List<Song>){
+    fun actualitzaEstadistica(list: List<Song>){
         EstadisticaProvider.afegeixDuracioNovaCancio(list)
         //Actualitzem la variable per a que els observers s'enterin.
         _resultEstadistica.value=Result.success(dataprovider.dataEstadistica)

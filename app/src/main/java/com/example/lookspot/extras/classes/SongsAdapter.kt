@@ -1,14 +1,12 @@
 package com.example.lookspot.extras.classes
 
 import android.content.Context
-import android.graphics.BitmapFactory.Options
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lookspot.R
@@ -39,8 +37,8 @@ class SongsAdapter(
             .load(song.image_url)
             .into(holder.imageSong)
 
-        holder.titleSong.text = song.nombre
-        holder.titleArtist.text = song.artista
+        holder.titleSong.text = song.name
+        holder.titleArtist.text = song.artist
 
         holder.toggleHeart.setOnClickListener {
             val currentPosition = holder.adapterPosition
