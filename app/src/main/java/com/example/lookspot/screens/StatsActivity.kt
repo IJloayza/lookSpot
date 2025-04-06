@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lookspot.R
 import com.example.lookspot.extras.models.Estadistica
 import com.example.lookspot.extras.models.EstadisticaViewModel
-import com.example.lookspot.extras.models.Song
 
 class StatsActivity : AppCompatActivity() {
 
@@ -46,8 +45,8 @@ class StatsActivity : AppCompatActivity() {
         val promptsText = findViewById<TextView>(R.id.prompts)
         promptsText.text = dades.numPrompts.toString()
 
-        UpdateBarGraph(dades)
-        UpdatePieGraph(dades)
+        updateBarGraph(dades)
+        updatePieGraph(dades)
         if (result.isFailure) {
             Toast.makeText(
                 this,
@@ -61,7 +60,7 @@ class StatsActivity : AppCompatActivity() {
         vmodel.resetEstadística()
     }
 
-    private fun updatePieChart(estadistica: Estadistica) {
+    private fun updatePieGraph(estadistica: Estadistica) {
         val numFavoritas = estadistica.numAsserts
         val numNoFavoritas = estadistica.numResults - numFavoritas
 
@@ -90,8 +89,13 @@ class StatsActivity : AppCompatActivity() {
 
 
 
-    private fun updateBarChart(estadistica: Estadistica) {
-        val tipoAlbumCount = estadistica.
+    private fun updateBarGraph(estadistica: Estadistica) {
+        // Crear un mapa con los valores que ya tienes en tu estadística
+        val tipoAlbumCount = mapOf(
+            "single" to estadistica.numSingle,
+            "album" to estadistica.numAlbum,
+            "compilation" to estadistica.numComp
+        )
 
         val tipos = listOf("single", "album", "compilation")
         val entries = ArrayList<BarEntry>()
@@ -116,9 +120,12 @@ class StatsActivity : AppCompatActivity() {
             xAxis.valueFormatter = IndexAxisValueFormatter(tipos)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(false)
+            xAxis.granularity = 1f
+            xAxis.labelCount = tipos.size
             axisLeft.setDrawGridLines(false)
             axisRight.isEnabled = false
             description.text = "Cantidad por tipo de álbum"
+            description.isEnabled = true
             animateY(1000)
             invalidate()
         }
