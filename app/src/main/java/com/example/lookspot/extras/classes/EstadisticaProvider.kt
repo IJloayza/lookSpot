@@ -2,6 +2,7 @@ package com.example.lookspot.extras.classes
 
 
 import com.example.lookspot.extras.models.Estadistica
+import com.example.lookspot.extras.models.Song
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -55,12 +56,27 @@ object EstadisticaProvider {
     }
 
     fun afegeixFav() {
-        dataEstadistica.numFavs++
+        dataEstadistica.numAsserts++
     }
 
-    fun afegeixDuracioNovaCancio(duracionNueva: Long) {
-        val totalCanciones = if (dataEstadistica.numQueries > 0) dataEstadistica.numQueries else 1
-        dataEstadistica.averageSongDuration =
-            (dataEstadistica.averageSongDuration * (totalCanciones - 1) + duracioNova) / totalCanciones
+    fun afegeixResult(listOfSongs: List<Song>){
+        dataEstadistica.numResults = listOfSongs.size
+    }
+
+    fun afegeixCategories(listOfSongs: List<Song>){
+        // Uso de grouping para segregar por los tipos que puede haber de song
+        val conteoTipos = listOfSongs.groupingBy { it.albumType.lowercase() }.eachCount()
+
+        dataEstadistica.numSingle = conteoTipos["single"] ?: 0
+        dataEstadistica.numAlbum = conteoTipos["album"] ?: 0
+        dataEstadistica.numComp = conteoTipos["compilation"] ?: 0
+    }
+
+    fun afegeixDuracioNovaCancio(listOfSongs: List<Song>) {
+        val totalDuracion = listOfSongs.sumOf { it.duracion } // total en segundos
+        val duracionMediaSegundos = if (listOfSongs.isNotEmpty()) totalDuracion / listOfSongs.size else 0L
+        val duracionMediaMinutos = duracionMediaSegundos / 60L
+
+        dataEstadistica.averageSongDuration = duracionMediaMinutos
     }
 }

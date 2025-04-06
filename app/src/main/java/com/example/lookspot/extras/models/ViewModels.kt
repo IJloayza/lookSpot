@@ -234,10 +234,9 @@ class EstadisticaViewModel(private val dataprovider: EstadisticaProvider) : View
         }
     }
 
-    fun ActualitzaEstadistica(dau1:Int, dau2:Int){
-        EstadisticaProvider.afegeixTirada(dau1,dau2)
+    fun ActualitzaEstadistica(list: List<Song>){
+        EstadisticaProvider.afegeixDuracioNovaCancio(list)
         //Actualitzem la variable per a que els observers s'enterin.
         _resultEstadistica.value=Result.success(dataprovider.dataEstadistica)
-
     }
 }

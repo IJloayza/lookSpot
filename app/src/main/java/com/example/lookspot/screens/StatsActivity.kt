@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lookspot.R
 import com.example.lookspot.extras.models.Estadistica
 import com.example.lookspot.extras.models.EstadisticaViewModel
+import com.example.lookspot.extras.models.Song
 
 class StatsActivity : AppCompatActivity() {
 
@@ -60,68 +61,65 @@ class StatsActivity : AppCompatActivity() {
         vmodel.resetEstadística()
     }
 
-    private fun UpdatePieGraph(estadistica:Estadistica) {
+    private fun updatePieChart(estadistica: Estadistica) {
+        val numFavoritas = estadistica.numAsserts
+        val numNoFavoritas = estadistica.numResults - numFavoritas
+
         val entries = listOf(
-            PieEntry(estadistica.numdobles.toFloat() , "Dobles"), // Valor 70%
-            PieEntry((estadistica.tirades-estadistica.numdobles).toFloat(), "No Dobles")  // Valor 30%
+            PieEntry(numFavoritas.toFloat(), "Favoritas"),
+            PieEntry(numNoFavoritas.toFloat(), "No favoritas")
         )
-        val pieDataSet = PieDataSet(entries, "Distribució")
-        pieDataSet.colors = listOf(Color.rgb(135, 206, 250), Color.rgb(255, 182, 193)) // Blau clar i rosa clar
-        pieDataSet.valueTextColor = Color.BLACK // Color del text
-        pieDataSet.valueTextSize = 16f // Mida del text
 
-        // Afegeix el DataSet al PieData
-        binding.piechartDobles.apply {
-            data= PieData(pieDataSet)
-            description.isEnabled = false // Desactiva la descripció
-            isDrawHoleEnabled = true // Mostra el forat al centre
-            holeRadius = 40f // Mida del forat
-            setHoleColor(Color.WHITE) // Color del forat
-            animateY(1000) // Animació en Y
-            setEntryLabelColor(Color.BLACK) // Color de les etiquetes
-            setEntryLabelTextSize(14f) // Mida del text de les etiquetes
+        val pieDataSet = PieDataSet(entries, "Canciones favoritas")
+        pieDataSet.colors = listOf(Color.rgb(255, 205, 210), Color.rgb(197, 225, 165)) // rosa y verde claro
+        pieDataSet.valueTextColor = Color.BLACK
+        pieDataSet.valueTextSize = 14f
 
-            // Actualitza el gràfic
+        pieChart.apply {
+            data = PieData(pieDataSet)
+            description.isEnabled = false
+            isDrawHoleEnabled = true
+            holeRadius = 40f
+            setHoleColor(Color.WHITE)
+            setEntryLabelColor(Color.BLACK)
+            setEntryLabelTextSize(14f)
+            animateY(1000)
             invalidate()
         }
     }
 
 
-    private fun UpdateBarGraph(estadistica:Estadistica){
+
+    private fun updateBarChart(estadistica: Estadistica) {
+        val tipoAlbumCount = estadistica.
+
+        val tipos = listOf("single", "album", "compilation")
         val entries = ArrayList<BarEntry>()
-        for (i in estadistica.daus.indices) {
-            entries.add(BarEntry((i+1).toFloat(), estadistica.daus[i].toFloat()))
+
+        for ((index, tipo) in tipos.withIndex()) {
+            val count = tipoAlbumCount[tipo] ?: 0
+            entries.add(BarEntry(index.toFloat(), count.toFloat()))
         }
 
-        val barDataSet = BarDataSet(entries, "Resultats Daus")
-
-        val pastelColors = listOf(
-            Color.rgb(255, 204, 204), // Rosa clar
-            Color.rgb(204, 229, 255), // Blau clar
-            Color.rgb(204, 255, 204), // Verd clar
-            Color.rgb(255, 255, 204), // Groc clar
-            Color.rgb(255, 229, 204), // Taronja clar
-            Color.rgb(229, 204, 255)  // Lila clar
+        val barDataSet = BarDataSet(entries, "Tipos de álbum")
+        barDataSet.colors = listOf(
+            Color.rgb(255, 204, 204), // Rosa
+            Color.rgb(204, 255, 229), // Verde agua
+            Color.rgb(204, 229, 255)  // Azul claro
         )
-        barDataSet.colors=pastelColors
         barDataSet.valueTextColor = Color.BLACK
-        barDataSet.valueTextSize = 16f
-        barDataSet.valueFormatter= DefaultValueFormatter(0)
+        barDataSet.valueTextSize = 14f
+        barDataSet.valueFormatter = DefaultValueFormatter(0)
 
-        binding.barchartDaus.apply {
-            data= BarData(barDataSet)
-            //setDrawGridBackground(false)
-
-            xAxis.setDrawGridLines(false)
+        barChart.apply {
+            data = BarData(barDataSet)
+            xAxis.valueFormatter = IndexAxisValueFormatter(tipos)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.setDrawGridLines(false)
             axisLeft.setDrawGridLines(false)
-            axisRight.setDrawAxisLine(false)
-            axisRight.setDrawGridLines(false)
-            axisRight.setDrawLabels(false)
-            description.text="Freqüència daus"
-            description.isEnabled = true // Activa la descripció
-            setFitBars(true) // Ajusta les barres al gràfic
-            animateY(1000) // Animació en Y
+            axisRight.isEnabled = false
+            description.text = "Cantidad por tipo de álbum"
+            animateY(1000)
             invalidate()
         }
     }

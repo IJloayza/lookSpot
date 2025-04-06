@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.lookspot.extras.classes.Menu
 import com.example.lookspot.R
 import com.example.lookspot.extras.classes.AlbumManager
+import com.example.lookspot.extras.classes.EstadisticaProvider
 import com.example.lookspot.extras.models.SongViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -81,8 +82,10 @@ class PromptActivity : AppCompatActivity() {
                 resultContainer.removeAllViews()
 
                 //Llamar al firebaseStore para pasarle el total de canciones en este prompt y aumentar el numero de prompts en 1
-
-
+                EstadisticaProvider.afegeixPrompt()
+                EstadisticaProvider.afegeixResult(songs)
+                EstadisticaProvider.afegeixDuracioNovaCancio(songs)
+                EstadisticaProvider.afegeixCategories(songs)
                 // Inflar cada canción en el LinearLayout
                 for (song in songs) {
                     val songView = LayoutInflater.from(this).inflate(R.layout.item_song, resultContainer, false)
@@ -106,6 +109,8 @@ class PromptActivity : AppCompatActivity() {
                                 selectedAlbum.canciones += song
                                 viewModel.postSong(selectedAlbum.id, song)
                                 // Mostrar un mensaje de confirmación
+                                //Añadir cancion asertada para el usuario
+                                EstadisticaProvider.afegeixFav()
                                 Toast.makeText(this, "Cançó afegida a ${selectedAlbum.nombre}", Toast.LENGTH_SHORT).show()
                             }
                             .setNegativeButton("Cancelar", null)

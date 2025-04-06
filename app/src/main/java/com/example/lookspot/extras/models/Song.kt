@@ -9,7 +9,8 @@ data class Song(
     val artista: String,
     val url: String,
     val image_url: String,
-    val duracion: Double
+    val duracion: Long,
+    val albumType: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
@@ -17,7 +18,8 @@ data class Song(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readDouble() ?: 0.0
+        parcel.readLong() ?: 0,
+        parcel.readString() ?: ""
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -26,6 +28,8 @@ data class Song(
         parcel.writeString(artista)
         parcel.writeString(url)
         parcel.writeString(image_url)
+        parcel.writeLong(duracion)
+        parcel.writeString(albumType)
     }
 
     override fun describeContents(): Int = 0

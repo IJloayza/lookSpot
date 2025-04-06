@@ -2,6 +2,7 @@ package com.example.lookspot.screens
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -21,10 +22,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var emailEdit: EditText
     private lateinit var passEdit: EditText
 
+
     private val viewModel: UserViewModel by viewModels()
 
     companion object {
         var didWelcome: Boolean = false
+        var idDispositiu = ""
+        const val nomAplicacio = "LookSpot"
+        const val idAplicacio = "lookSpot"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +41,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        idDispositiu = Settings.Secure.getString(
+            getApplicationContext().contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
 
         if (!didWelcome) {
             startActivity(Intent(this, Welcome::class.java))
