@@ -56,7 +56,12 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore.ktx)
 
-
+    //Mockito
+    testImplementation(libs.mockwebserver)
+    testImplementation (libs.mockito.core) // Mockito core
+    testImplementation (libs.mockito.kotlin )// Mockito per a Kotlin
+    androidTestImplementation (libs.mockito.core) // Mockito core
+    androidTestImplementation (libs.mockito.kotlin )// Mockito per a Kotlin
 
     implementation(libs.glide)
     kapt(libs.glide.compiler)
