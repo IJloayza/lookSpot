@@ -7,3 +7,9 @@ data class User(
     val correo: String,
     val albums: List<Album>
 )
+
+data class UserCreate(
+    val nombre: String,
+    val correo: String,
+    val contrasena: String
+)

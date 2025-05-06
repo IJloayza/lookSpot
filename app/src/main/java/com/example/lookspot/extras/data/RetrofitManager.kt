@@ -5,6 +5,7 @@ import com.example.lookspot.extras.models.AlbumCreate
 import com.example.lookspot.extras.models.AlbumUpdate
 import com.example.lookspot.extras.models.Song
 import com.example.lookspot.extras.models.User
+import com.example.lookspot.extras.models.UserCreate
 import com.example.lookspot.extras.models.UserLogin
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -39,7 +40,6 @@ interface RetrofitService {
     @POST("/album/{album_id}/cancion")
     suspend fun postSongInAlbum(@Path("album_id") albumId: Int,@Body song:Song): Response<Song>
 
-// Próxima tarea de M7
     @PUT("/album/{album_id}")
     suspend fun changeAlbum(@Path("album_id") albumId:Int, @Body name: AlbumUpdate):Response<Album>
 
@@ -48,6 +48,9 @@ interface RetrofitService {
 
     @DELETE("/album/{album_id}/cancion/{cancion_id}")
     suspend fun deleteSong(@Path("album_id")albumId:Int, @Path("cancion_id")cancionId:String):Response<Unit>
+
+    @POST("/user/create")
+    suspend fun postUser(@Body user: UserCreate): Response<User>
 }
 
 

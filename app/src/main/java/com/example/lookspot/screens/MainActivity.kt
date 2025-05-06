@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         // Inicializar vistas y botones
         initEditTexts()
-        initButtonSign()
+        initButtons()
 
         observeUser()
     }
@@ -62,9 +62,10 @@ class MainActivity : AppCompatActivity() {
         passEdit = findViewById(R.id.password)
     }
 
-    private fun initButtonSign() {
-        val signIn = findViewById<Button>(R.id.credsLogin)
-        signIn.setOnClickListener {
+    private fun initButtons() {
+        val logIn = findViewById<Button>(R.id.credsLogin)
+        val signIn = findViewById<Button>(R.id.signIn)
+        logIn.setOnClickListener {
             val emailContent = emailEdit.text.toString()
             val passContent = passEdit.text.toString()
 
@@ -73,6 +74,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 viewModel.postUserLogin(emailContent, passContent)
             }
+        }
+
+        signIn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 
