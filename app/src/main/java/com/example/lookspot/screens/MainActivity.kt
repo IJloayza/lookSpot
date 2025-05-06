@@ -16,6 +16,7 @@ import com.example.lookspot.extras.classes.AlbumManager
 import com.example.lookspot.extras.classes.UserManager
 import com.example.lookspot.extras.models.Album
 import com.example.lookspot.extras.models.UserViewModel
+import com.example.lookspot.extras.testing.LogInValidator
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,16 +66,11 @@ class MainActivity : AppCompatActivity() {
     private fun initButtons() {
         val logIn = findViewById<Button>(R.id.credsLogin)
         val signIn = findViewById<Button>(R.id.signIn)
-        logIn.setOnClickListener {
-            val emailContent = emailEdit.text.toString()
-            val passContent = passEdit.text.toString()
 
-            if (emailContent.isEmpty() || passContent.isEmpty()) {
-                Toast.makeText(this, "Els camps s'han de omplir", Toast.LENGTH_SHORT).show()
-            } else {
-                viewModel.postUserLogin(emailContent, passContent)
-            }
+        logIn.setOnClickListener {
+            logIn()
         }
+
 
         signIn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
@@ -95,5 +91,31 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error a la obtenció d'usuari(Incorrecte o no existeix)", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun logIn() {
+        val emailContent = emailEdit.text.toString()
+        val passContent = passEdit.text.toString()
+
+        var isInvalid = false
+
+        try {
+            LogInValidator.validateEmail(emailContent)
+        } catch (e: IllegalArgumentException) {
+            emailEdit.error = e.message
+            isInvalid = true
+        }
+
+        try {
+            LogInValidator.validatePassword(passContent)
+        } catch (e: IllegalArgumentException) {
+            passEdit.error = e.message
+            isInvalid = true
+        }
+
+
+        if (isInvalid) return
+
+        viewModel.postUserLogin(emailContent, passContent)
     }
 }
