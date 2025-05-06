@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var emailEdit: EditText
     private lateinit var passEdit: EditText
 
-
     private val viewModel: UserViewModel by viewModels()
 
     companion object {
