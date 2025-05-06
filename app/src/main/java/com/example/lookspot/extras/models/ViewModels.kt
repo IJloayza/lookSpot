@@ -123,6 +123,15 @@ class UserViewModel : ViewModel() {
             }
         }
     }
+
+    fun createUser(nombre: String, correo: String, contrasena: String){
+        viewModelScope.launch {
+
+            RetrofitManager.instance.postUser(UserCreate(nombre, correo, contrasena))
+
+        }
+    }
+
 }
 
 class AlbumViewModel : ViewModel() {
