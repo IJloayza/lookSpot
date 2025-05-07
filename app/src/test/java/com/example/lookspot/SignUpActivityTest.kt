@@ -5,14 +5,16 @@ import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.junit.Test
 
-class MainActivityTest {
+class SignUpActivityTest {
+
+
     @Test
     fun `isValidEmail should return true for valid email`() {
         try {
             LogInValidator.validateEmail("correctEmail@test.com")
             assertEquals(1, 1)
         }catch (e: IllegalArgumentException){
-           fail("Correct email should not throw an exception, ${e.message}")
+            fail("Correct email should not throw an exception, ${e.message}")
         }
     }
 

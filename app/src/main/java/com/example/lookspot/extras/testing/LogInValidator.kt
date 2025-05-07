@@ -21,5 +21,4 @@ object LogInValidator {
             throw IllegalArgumentException("Password must not be empty")
         }
     }
-
 }
