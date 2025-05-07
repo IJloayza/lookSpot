@@ -1,5 +1,6 @@
 package com.example.lookspot.screens
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -25,12 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: UserViewModel by viewModels()
 
-    companion object {
-        var didWelcome: Boolean = false
-        var idDispositiu = ""
-        const val nomAplicacio = "LookSpot"
-        const val idAplicacio = "lookSpot"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +37,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        idDispositiu = Settings.Secure.getString(
-            getApplicationContext().contentResolver,
-            Settings.Secure.ANDROID_ID
-        )
-
-        if (!didWelcome) {
-            startActivity(Intent(this, Welcome::class.java))
-        }
 
         // Inicializar vistas y botones
         initEditTexts()
@@ -71,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             logIn()
         }
 
-
         signIn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -88,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 AlbumManager.setAlbums(user.albums as ArrayList<Album>)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Error a la obtenció d'usuari(Incorrecte o no existeix)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error finding user", Toast.LENGTH_SHORT).show()
             }
         }
     }

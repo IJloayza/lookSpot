@@ -25,6 +25,9 @@ object SignUpValidator {
         if (name.isBlank()) {
             throw IllegalArgumentException("Name must not be empty")
         }
+        else if (name.length < 2) {
+            throw IllegalArgumentException("Name must be at least 2 characters long")
+        }
         else if (name.length > 50) {
             throw IllegalArgumentException("Name must not exceed 50 characters")
         }

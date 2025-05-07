@@ -29,7 +29,7 @@ isDisplayed() → Comprova si un element és visible a la pantalla.
  */
 
 @RunWith(AndroidJUnit4::class)
-class RegistreActivityUITest {
+class LoginActivityTest {
 
     interface EmailValidationTest{}
     interface PasswordValidationTest{}
@@ -60,7 +60,7 @@ class RegistreActivityUITest {
             "example@.com"
         )
 
-        invalidEmails.forEach { invalidEmail -> // Clear and type new email
+        invalidEmails.forEach { invalidEmail ->
             onView(withId(R.id.emailAddress)).perform(clearText(), typeText(invalidEmail), closeSoftKeyboard())
             onView(withId(R.id.credsLogin)).perform(click())
 
@@ -79,7 +79,7 @@ class RegistreActivityUITest {
         onView(withId(R.id.credsLogin)).perform(click())
 
         onView(withId(R.id.emailAddress))
-            .check(matches(hasErrorText("Email length must be between 5 and 50 characters")))
+            .check(matches(hasErrorText("Email must not exceed 50 characters")))
     }
 
     @Category(PasswordValidationTest::class)
@@ -92,4 +92,5 @@ class RegistreActivityUITest {
         onView(withId(R.id.password))
             .check(matches(hasErrorText("Password must not be empty")))
     }
+
 }

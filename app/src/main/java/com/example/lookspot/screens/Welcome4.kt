@@ -23,7 +23,6 @@ class Welcome4 : AppCompatActivity() {
         val next: Button = findViewById(R.id.nextWelcome)
 
         next.setOnClickListener{ _ ->
-            MainActivity.didWelcome = true
             startActivity(
                 Intent(this, MainActivity::class.java)
             )

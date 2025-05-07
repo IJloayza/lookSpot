@@ -37,7 +37,6 @@ class HelpSkip : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.setOnClickListener{ _ ->
-            MainActivity.didWelcome = true
             startActivity(
                 Intent(context, MainActivity::class.java)
             )

@@ -127,7 +127,15 @@ class UserViewModel : ViewModel() {
     fun createUser(nombre: String, correo: String, contrasena: String){
         viewModelScope.launch {
 
-            RetrofitManager.instance.postUser(UserCreate(nombre, correo, contrasena))
+            val response = RetrofitManager.instance.postUser(UserCreate(nombre, correo, contrasena))
+            if (response.isSuccessful) {
+                val user = response.body()
+                Log.d("Retrofit", "User Creado: $user")
+                _user.value = user
+            } else {
+                Log.e("Retrofit", "User No Creado: ${response.errorBody()}")
+                _user.value = null
+            }
 
         }
     }
