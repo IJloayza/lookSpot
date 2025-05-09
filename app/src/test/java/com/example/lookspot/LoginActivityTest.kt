@@ -5,7 +5,7 @@ import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.fail
 import org.junit.Test
 
-class MainActivityTest {
+class LoginActivityTest {
     @Test
     fun `isValidEmail should return true for valid email`() {
         try {

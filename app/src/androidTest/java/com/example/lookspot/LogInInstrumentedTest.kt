@@ -17,19 +17,9 @@ import org.junit.experimental.categories.Category
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/*
-Elements clau d'Espresso en els tests
-onView(withId(...)) → Localitza un element de la UI.
-perform(typeText(...)) → Escriu text en un EditText.
-perform(click()) → Fa clic en un Button.
-check(matches(...)) → Verifica que l'element compleix una condició.
-hasErrorText("Missatge d'error") → Comprova si un EditText té un error assignat.
-isDisplayed() → Comprova si un element és visible a la pantalla.
-
- */
 
 @RunWith(AndroidJUnit4::class)
-class LoginActivityTest {
+class LogInInstrumentedTest {
 
     interface EmailValidationTest{}
     interface PasswordValidationTest{}

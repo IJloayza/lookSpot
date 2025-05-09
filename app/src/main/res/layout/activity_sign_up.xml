@@ -77,14 +77,14 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <Button
-            android:id="@+id/googleLogin"
+            android:id="@+id/credsLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Log in"/>
 
         <Button
-            android:id="@+id/credsLogin"
+            android:id="@+id/signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
